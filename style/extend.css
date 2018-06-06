@@ -1,0 +1,69 @@
+/*Css by David https://codepen.io/Inlesco/pen/XXRRmY* (Edited)*/
+:root {
+  --color: #FC8865;
+}
+
+.closed > .circle > .vertical {
+  transition: all 0.5s ease-in-out;
+  transform: rotate(-90deg);
+}
+.closed > .circle > .horizontal {
+  transition: all 0.5s ease-in-out;
+  transform: rotate(-90deg);
+  opacity: 1;
+}
+
+.opened {
+  opacity: 1;
+}
+.opened > .circle > .vertical {
+  transition: all 0.5s ease-in-out;
+  transform: rotate(90deg);
+}
+.opened > .circle > .horizontal {
+  transition: all 0.5s ease-in-out;
+  transform: rotate(90deg);
+  opacity: 0;
+}
+
+.circle-plus {
+    height: 4em;
+    width: 4em;
+    font-size: 1em;
+    opacity: .7;
+    float: right;
+    cursor: pointer;
+}
+
+.circle-plus .circle {
+    position: relative;
+    width: 2.55em;
+    height: 2.5em;
+    border-radius: 100%;
+    border: solid .5em;
+}
+.circle-plus .circle .horizontal {
+    position: absolute;
+    background-color: var(--color);
+    width: 30px;
+    height: 5px;
+    left: 50%;
+    margin-left: -15px;
+    top: 50%;
+    margin-top: -2.5px;
+}
+.circle-plus .circle .vertical {
+    position: absolute;
+    background-color: var(--color);
+    width: 5px;
+    height: 30px;
+    left: 50%;
+    margin-left: -2.5px;
+    top: 50%;
+    margin-top: -15px;
+}
+
+.circle {
+  background-color: transparent;
+  color: transparent;
+}

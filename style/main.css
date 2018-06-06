@@ -1,0 +1,297 @@
+/*Common*/
+:root {
+	--bg-color: #0E485D;
+	--menu-color: #F9F097;
+	--txt-color: #FC8865;
+	--accent-one: #4D9EA2;
+	--accent-two: #6ED7D5;
+}
+
+* {
+	font-size: 16px;
+	font-family: arial, sans-serif;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+/*Body*/
+
+body {
+	background-color: var(--bg-color);
+	overflow-x: hidden;
+}
+
+/**Header**/
+
+header {
+	width: 100%;
+	float: left;
+}
+
+/***Navi***/
+
+#nav-placeholder {
+	width: 100%;
+	float: left;
+}
+
+nav {
+	width: 100%;
+	float: left;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	background-color: var(--menu-color);
+}
+
+nav ul {
+	list-style-type: none;
+	width: 100%;
+}
+
+nav ul li {
+	font-size: 2rem;
+	float: left;
+	color: var(--txt-color);
+	position: relative;
+}
+
+nav ul .drop-btn {
+	width: 100%;
+	text-align: left;
+	display: none;
+}
+
+nav ul .drop-btn .hamburger {
+	padding: 0;
+}
+
+nav ul .drop {
+	width: calc(100% / 4);
+	text-align: center;
+	display: list-item;
+}
+
+nav ul li a {
+	display: block;
+	width: 100%;
+	font-size: 2rem;
+	text-decoration: none;
+	color: var(--txt-color);
+	padding: 1rem;
+	cursor: pointer;
+}
+
+nav > ul > li:hover {
+	cursor: default;
+	background-color: var(--accent-one);
+}
+
+nav ul li .drop-container {
+	display: none;
+	width: 100%;
+	position: absolute;
+	z-index: 1;
+	background-color: var(--menu-color);
+	padding: 1rem;
+	padding-bottom: 0;
+	border-top: 1px solid var(--bg-color);
+	border-bottom: 1px solid var(--bg-color);
+}
+
+/****Login****/
+
+.drop-container > form {
+	width: 100%;
+	margin-bottom: 1rem;
+}
+
+.drop-container form > h2 {
+	font-size: 1.75rem;
+	text-align: center;
+}
+
+form hr {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+#login-form label{
+	font-size: 1.5rem;
+	float: left;
+	width: 100%;
+	text-align: left;
+}
+
+#login-form input:not([type=checkbox]){
+	font-size: 1.5rem;
+	float: left;
+	width: 100%;
+	text-align: left;
+	border: none;
+	border-bottom: 1px solid var(--bg-color);
+	background-color: transparent;
+	margin-bottom: 1rem;
+	-webkit-transition: border .3s;
+	transition: border .3s;
+	outline: none;
+}
+
+#login-form input:not([type=checkbox]):focus {
+	border-bottom: 1px solid var(--txt-color);
+}
+
+#login-form span{
+	font-size: 1rem;
+	float: left;
+	width: 100%;
+	text-align: left;
+	margin-bottom: 1rem;
+}
+
+#login-form button{
+	font-size: 1.5rem;
+	float: left;
+	width: 100%;
+	cursor: pointer;
+	border: none;
+	background-color: var(--txt-color);
+	padding: .3rem;
+	box-shadow: 3px 3px 15px Grey;
+	margin-bottom: 1rem;
+}
+
+#login-form button:hover{
+	box-shadow: 1px 1px 15px Grey;
+}
+
+#sign-form {
+	width: 100%;
+	float: left;
+}
+
+#sign {
+	font-size: 1.5rem;
+	width: 100%;
+	cursor: pointer;
+	border: none;
+	background-color: var(--txt-color);
+	padding: .3rem;
+	box-shadow: 3px 3px 15px Grey;
+}
+
+#sign:hover{
+	box-shadow: 1px 1px 15px Grey;
+}
+
+/****Profile****/
+
+.profile {
+	width: 100%;
+	float: left;
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+}
+
+#usernameField {
+}
+
+#mailField {
+}
+
+#profileLink {
+	font-size: 1.5rem;
+	width: 100%;
+	color: black;
+	background-color: var(--txt-color);
+}
+
+@media only screen and (max-width: 1000px) and (min-width: 800px)
+{
+	#login-con > *{
+		font-size: 1.2rem;
+	}
+}
+
+/****Language****/
+
+#lang-form {
+	height: 50vh;
+	background-color: var(--menu-color);
+}
+
+@media only screen and (max-width: 800px)
+{
+	nav ul .drop {
+		display: none;
+		width: 100%;
+	}
+
+	nav ul .drop-btn {
+		display: list-item;
+	}
+
+	nav ul li .drop-container {
+		position: relative;
+		margin: 0;
+		float: left;
+	}
+}
+
+/**Content**/
+.container-main {
+	width: 100%;
+	float: left;
+	margin: 0;
+	padding: .5rem;
+}
+.container-sub {
+	width: 100%;
+	float: left;
+	color: var(--txt-color);
+	overflow-y: auto;
+	overflow-x: hidden;
+	margin-top: .5rem;
+	margin-bottom: .5rem;
+	background-color: var(--menu-color);
+}
+
+.left {
+	width: 50%;
+	float: left;
+}
+
+.right {
+	width: 50%;
+	float: right;
+	text-align: right;
+}
+
+.container-sub > h1 {
+	font-size: 2rem;
+	text-align: center;
+	margin: 1rem;
+	width: 90%;
+	float: left;
+}
+
+.slider {
+	display: none;
+	margin: 0;
+	padding: .5rem;
+}
+
+.slider ,.slider > div, .slider > ul {
+	background-color: yellow;
+}
+
+.container-main ul {
+	list-style-type: none;
+}
+
+.container-main li {
+	font-size: 1.5rem;
+	margin-bottom: .5rem;
+}
