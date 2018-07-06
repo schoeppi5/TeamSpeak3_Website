@@ -1,10 +1,10 @@
 /*Common*/
 :root {
-	--bg-color: #0E485D;
-	--menu-color: #F9F097;
-	--txt-color: #FC8865;
-	--accent-one: #4D9EA2;
-	--accent-two: #6ED7D5;
+	--bg-color: #ededed;
+	--menu-color: #c4c4c4;
+	--txt-color: #3b71c6;
+	--accent-one: #aeaeaf;
+	--accent-two: #8e8e8e;
 }
 
 * {
@@ -20,6 +20,7 @@
 body {
 	background-color: var(--bg-color);
 	overflow-x: hidden;
+	color: var(--txt-color);
 }
 
 /**Header**/
@@ -69,7 +70,7 @@ nav ul .drop-btn .hamburger {
 }
 
 nav ul .drop {
-	width: calc(100% / 4);
+	/* width: 2rem; */
 	text-align: center;
 	display: list-item;
 }
@@ -82,6 +83,11 @@ nav ul li a {
 	color: var(--txt-color);
 	padding: 1rem;
 	cursor: pointer;
+}
+
+nav ul li a img {
+	width: 2rem;
+	height: 2rem;
 }
 
 nav > ul > li:hover {
@@ -101,7 +107,7 @@ nav ul li .drop-container {
 	border-bottom: 1px solid var(--bg-color);
 }
 
-/****Login****/
+/****profile****/
 
 .drop-container > form {
 	width: 100%;
@@ -217,20 +223,45 @@ form hr {
 
 /****Language****/
 
-#lang-form {
-	height: 50vh;
-	background-color: var(--menu-color);
+#lang {
+	float: right;
 }
 
-@media only screen and (max-width: 800px)
+#lang-form {
+	background-color: var(--menu-color);
+	padding: 0;
+}
+
+.lang-select {
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+	cursor: pointer;
+}
+
+.lang-select:hover {
+	background-color: var(--accent-one);
+}
+
+@media only screen and (max-width: 300px)
 {
 	nav ul .drop {
 		display: none;
-		width: 100%;
+		/* width: 100%; */
+		float: left;
 	}
 
 	nav ul .drop-btn {
 		display: list-item;
+	}
+
+	.drop-btn .hamburger-box {
+		width: 2rem;
+		height: 2rem;
+	}
+
+	nav {
+		width: 64px;
 	}
 
 	nav ul li .drop-container {
