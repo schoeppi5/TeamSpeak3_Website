@@ -3,26 +3,24 @@ $('#login-form').submit(function(event)
 	event.preventDefault();
 }).validate({
 	rules: {
-			pass: {required: true},
-			email: {required: true, email: true},
+			uid: {required: true}
 	},
 	messages: {
-		pass:{required: "No Password"},
-		email: "No E-mail",
+		uid: "Please enter your unique identifier",
 	},
 	errorPlacement: function(error, element) {
 		element.attr("placeholder", error.text());
 	},
 	submitHandler: function() {
-		submitForm();
+		checkUID();
 	}
 });
 
 
-function submitForm()
+function checkUID()
 {
-	var data = $("#login-form").serialize();
-	data = data + "&action=login";
+	var data = $("#uid").serialize();
+	data = data + "&action=check";
 
 	$.ajax({
 		type : 'POST',
@@ -32,11 +30,7 @@ function submitForm()
 			response = $.parseJSON(response);
 			if(response.status == "200")
 			{
-				$('#login-con').load("/include/profile.html", function()
-				{
-					$('#usernameField').html(response.username);
-					$('#mailField').html(response.email);
-				});
+				checked();
 			}
 			else
 			{

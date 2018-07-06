@@ -107,32 +107,21 @@ nav ul li .drop-container {
 	border-bottom: 1px solid var(--bg-color);
 }
 
-/****profile****/
+/****login****/
 
-.drop-container > form {
-	width: 100%;
-	margin-bottom: 1rem;
-}
-
-.drop-container form > h2 {
-	font-size: 1.75rem;
-	text-align: center;
+#login-form {
+	width: 25rem;
+	padding: 1rem;
 }
 
 form hr {
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-}
-
-#login-form label{
-	font-size: 1.5rem;
-	float: left;
+	margin-top: .5rem;
+	margin-bottom: 2rem;
 	width: 100%;
-	text-align: left;
 }
 
 #login-form input:not([type=checkbox]){
-	font-size: 1.5rem;
+	font-size: 1rem;
 	float: left;
 	width: 100%;
 	text-align: left;
@@ -143,10 +132,15 @@ form hr {
 	-webkit-transition: border .3s;
 	transition: border .3s;
 	outline: none;
+	color: var(--text-color);
 }
 
 #login-form input:not([type=checkbox]):focus {
 	border-bottom: 1px solid var(--txt-color);
+}
+
+#login-form #code {
+	display: none;
 }
 
 #login-form span{
@@ -158,38 +152,15 @@ form hr {
 }
 
 #login-form button{
-	font-size: 1.5rem;
+	font-size: 1rem;
 	float: left;
 	width: 100%;
 	cursor: pointer;
 	border: none;
 	background-color: var(--txt-color);
+	color: var(--bg-color);
 	padding: .3rem;
-	box-shadow: 3px 3px 15px Grey;
-	margin-bottom: 1rem;
-}
-
-#login-form button:hover{
-	box-shadow: 1px 1px 15px Grey;
-}
-
-#sign-form {
-	width: 100%;
-	float: left;
-}
-
-#sign {
-	font-size: 1.5rem;
-	width: 100%;
-	cursor: pointer;
-	border: none;
-	background-color: var(--txt-color);
-	padding: .3rem;
-	box-shadow: 3px 3px 15px Grey;
-}
-
-#sign:hover{
-	box-shadow: 1px 1px 15px Grey;
+	margin-bottom: .5rem;
 }
 
 /****Profile****/
@@ -276,17 +247,7 @@ form hr {
 	width: 100%;
 	float: left;
 	margin: 0;
-	padding: .5rem;
-}
-.container-sub {
-	width: 100%;
-	float: left;
-	color: var(--txt-color);
-	overflow-y: auto;
-	overflow-x: hidden;
-	margin-top: .5rem;
-	margin-bottom: .5rem;
-	background-color: var(--menu-color);
+	padding: 5rem;
 }
 
 .left {
@@ -300,29 +261,13 @@ form hr {
 	text-align: right;
 }
 
-.container-sub > h1 {
-	font-size: 2rem;
-	text-align: center;
-	margin: 1rem;
-	width: 90%;
+.dashlet {
 	float: left;
+	background-color: var(--menu-color);
+	padding: .25rem;
+	margin-left: 4rem;
 }
 
-.slider {
-	display: none;
-	margin: 0;
-	padding: .5rem;
-}
-
-.slider ,.slider > div, .slider > ul {
-	background-color: yellow;
-}
-
-.container-main ul {
-	list-style-type: none;
-}
-
-.container-main li {
-	font-size: 1.5rem;
-	margin-bottom: .5rem;
+.dashlet h1 {
+	font-size: 2rem;
 }
