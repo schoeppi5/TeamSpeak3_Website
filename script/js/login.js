@@ -24,7 +24,7 @@ function checkUID()
 
 	$.ajax({
 		type : 'POST',
-		url  : '/script/php/login.php',
+		url  : './script/php/login.php',
 		data : data,
 		success :  function(response) {
 			response = $.parseJSON(response);

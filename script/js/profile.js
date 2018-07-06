@@ -2,7 +2,7 @@ function queryCurrentUser()
 {
   $.ajax({
 		type : 'POST',
-		url  : '/script/php/db_request_user.php',
+		url  : './script/php/db_request_user.php',
 		success :  function(response) {
 			response = $.parseJSON(response);
 			if(response.status == "200")
@@ -22,5 +22,5 @@ $(document).ready(function()
 {
   queryCurrentUser();
 
-  
+
 });

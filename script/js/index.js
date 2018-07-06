@@ -1,8 +1,8 @@
 function getNav()
 {
-	$('header').load("/include/nav.html", function()
+	$('header').load("./include/nav.html", function()
 	{
-		$.getScript("/script/js/nav.js").done(function()
+		$.getScript("./script/js/nav.js").done(function()
 		{
 			resize();
 		});
@@ -11,9 +11,9 @@ function getNav()
 
 function getDashboard()
 {
-	$('.container-main').load("/include/dashboard.html", function()
+	$('.container-main').load("./include/dashboard.html", function()
 	{
-		$.getScript("/script/js/dashboard.js").done(function()
+		$.getScript("./script/js/dashboard.js").done(function()
 		{
 			getLogin();
 		});

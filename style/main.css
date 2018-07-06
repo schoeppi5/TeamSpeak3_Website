@@ -5,6 +5,7 @@
 	--txt-color: #3b71c6;
 	--accent-one: #aeaeaf;
 	--accent-two: #8e8e8e;
+	--dashlet-color: #ffffff;
 }
 
 * {
@@ -263,7 +264,7 @@ form hr {
 
 .dashlet {
 	float: left;
-	background-color: var(--menu-color);
+	background-color: var(--dashlet-color);
 	padding: .25rem;
 	margin-left: 4rem;
 }
