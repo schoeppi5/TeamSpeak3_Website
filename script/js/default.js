@@ -1,6 +1,6 @@
 function getNav()
 {
-	$('header').load("/include/nav.html", function()
+	$('body').load("/include/nav.html", function()
 	{
 		$.getScript("/script/js/nav.js").done(function()
 		{
