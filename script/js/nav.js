@@ -15,7 +15,7 @@ function resize()
 	}
 }
 
-$(document).ready(function()
+$('nav').ready(function()
 {
 	$.getScript("./script/js/login.js").done(function()
 	{
@@ -28,8 +28,9 @@ $(document).ready(function()
 		$('.drop').slideToggle(slideSpeed);
 	});
 
-	$('#lang').click(function()
+	$('#lang').click(function(evt)
 	{
 		$('#lang-form').slideToggle(slideSpeed);
+		evt.stopImmediatePropagation();
 	});
 });
