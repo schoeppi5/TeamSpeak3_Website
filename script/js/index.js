@@ -26,6 +26,11 @@ function getDashboard()
 	});
 }
 
+function loaded()
+{
+	$('#loader-container').fadeOut(200);
+}
+
 /*
  *function to display messages
  *@params:
@@ -63,7 +68,7 @@ function promptMessage(msg, type, time)
 
 	if(time > 0)
 	{
-		let i = setInterval(function(){msgBox.fadeOut(300);}, time);
+		let i = setTimeout(function(){msgBox.fadeOut(300);}, time);
 	}
 	else
 	{
@@ -73,18 +78,20 @@ function promptMessage(msg, type, time)
 
 function errorHandler(response)
 {
+	let time = 5000;
+
 	switch(response.status)
 	{
 		case "502":
-			promptMessage(response.message, 2, 10000);
+			promptMessage(response.message, 2, time);
 			console.error(response.errormsg);
 		break;
 		case "500":
-			promptMessage(response.message, 2, 10000);
+			promptMessage(response.message, 2, time);
 			console.error(response.errormsg);
 		break;
 		case "400":
-			promptMessage(response.message, 2, 10000);
+			promptMessage(response.message, 2, time);
 			console.error(response.errormsg);
 		break;
 		default: console.log(response.status + ": " + response.message + " (" + response.errormsg + ")");
@@ -96,7 +103,6 @@ $(document).ready(function()
 	getNav();
 	getDashboard();
 	resize();
-
 	$(window).resize(function()
 	{
 		resize();

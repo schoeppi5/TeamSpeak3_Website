@@ -271,6 +271,24 @@ nav ul li .drop-container {
 }
 
 /**Content**/
+#loader-container {
+	width: 100vw;
+	height: 100vh;
+	background-color: var(--bg-color);
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
+
+#loader-container > img {
+	width: 10rem;
+	height: 10rem;
+	top: calc(50% - 10rem);
+	left: calc(50% - 10rem);
+	position: absolute;
+}
+
 .container {
 	width: 100%;
 	float: left;
@@ -308,7 +326,7 @@ nav ul li .drop-container {
 	font-size: 2rem;
 }
 
-@media only screen and (max-width: 900px)
+@media only screen and (max-width: 1000px)
 {
 	.dashlet {
 		width: 100% !IMPORTANT;
@@ -318,6 +336,29 @@ nav ul li .drop-container {
 
 	#main {
 		padding: 2rem;
+	}
+
+	#ts-dashlet-left {
+		border-right: none !IMPORTANT;
+		width: 100%;
+	}
+
+	#ts-dashlet-left > * {
+		font-size: 1.25rem;
+	}
+
+	#ts-dashlet-left > * > *{
+		font-size: 1.25rem;
+	}
+
+	#ts-dashlet-right {
+		border-left: none !IMPORTANT;
+		width: 100%;
+		font-size: 1.5rem;
+	}
+
+	#ts-dashlet-right > * > *{
+		font-size: 1.5rem;
 	}
 }
 

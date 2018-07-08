@@ -47,6 +47,8 @@ function loadClients()
           }
         });
       	resize();
+        loaded();
+        $('#ts-reload > button').html("Reload");
       }
       else
       {
@@ -57,5 +59,6 @@ function loadClients()
 }
 
 function tsreload(){
+  $('#ts-reload > button').html("<img src=\"./img/reload.svg\" style=\"width: 1rem; height: 1rem\"/>");
   loadInfo();
 }
