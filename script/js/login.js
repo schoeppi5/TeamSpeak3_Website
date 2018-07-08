@@ -16,11 +16,49 @@ $('#login-form').submit(function(event)
 	}
 });
 
+$('#key-form').submit(function(event)
+{
+	event.preventDefault();
+}).validate({
+	rules: {
+			code: {required: true}
+	},
+	messages: {
+		code: "Please enter the key you recieved",
+	},
+	errorPlacement: function(error, element) {
+		element.attr("placeholder", error.text());
+	},
+	submitHandler: function() {
+		login();
+	}
+});
+
 
 function checkUID()
 {
 	var data = $("#uid").serialize();
-	data = data + "&action=check";
+
+	$.ajax({
+		type : 'POST',
+		url  : './script/php/checkUid.php',
+		data : data,
+		success :  function(response) {
+			response = $.parseJSON(response);
+			if(response.status == "200")
+			{
+				$('#profile-dashlet').load("./include/key.html");
+			}
+			else
+			{
+				errorHandler(response);
+			}
+		}
+	});
+}
+
+function login(){
+	var data = $("#code").serialize();
 
 	$.ajax({
 		type : 'POST',
@@ -30,7 +68,7 @@ function checkUID()
 			response = $.parseJSON(response);
 			if(response.status == "200")
 			{
-				checked();
+				$('#profile-dashlet').load("./include/key.html");
 			}
 			else
 			{
@@ -38,43 +76,27 @@ function checkUID()
 			}
 		}
 	});
-}
-
-function errorHandler(response)
-{
-	switch(response.status)
-	{
-		case "403":
-		$('#pass').val("");
-		$('#pass').attr("placeholder", response.message);
-		break;
-		case "404":
-		$('#email').val("");
-		$('#email').attr("placeholder", response.message);
-		break;
-		default: console.log(response.status + ": " + response.message);
-	}
 }
 
 function rememberLogin()
 {
-	$.ajax({
-		type : 'POST',
-		url  : '/script/php/login.php',
-		success :  function(response) {
-			response = $.parseJSON(response);
-			if(response.status == "200")
-			{
-				$('#login-con').load("/include/profile.html", function()
-				{
-					$('#usernameField').html(response.username);
-					$('#mailField').html(response.email);
-				});
-			}
-			else
-			{
-				errorHandler(response);
-			}
-		}
-	});
+	// $.ajax({
+	// 	type : 'POST',
+	// 	url  : './script/php/login.php',
+	// 	success :  function(response) {
+	// 		response = $.parseJSON(response);
+	// 		if(response.status == "200")
+	// 		{
+	// 			$('#login-con').load("/include/profile.html", function()
+	// 			{
+	// 				$('#usernameField').html(response.username);
+	// 				$('#mailField').html(response.email);
+	// 			});
+	// 		}
+	// 		else
+	// 		{
+	// 			errorHandler(response);
+	// 		}
+	// 	}
+	// });
 }

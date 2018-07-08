@@ -3,10 +3,15 @@ var slideSpeed = 150;
 function resize()
 {
 	$('#nav-placeholder').css("height", $('nav').height());
-	$('.container').css("height", $('body').height() - $('header').height());
+	$('#main').css("height", $('body').height() - $('header').height());
 	if($('.drop-btn').css('display') == "none")
 	{
 		$('.drop').show();
+	}
+	if ($('#ts-dashlet-left').height() > $('#ts-dashlet-right').height()) {
+		$('#ts-dashlet-right').height($('#ts-dashlet-left').height());
+	} else {
+		$('#ts-dashlet-left').height($('#ts-dashlet-right').height());
 	}
 }
 
