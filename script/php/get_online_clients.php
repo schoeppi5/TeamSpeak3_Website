@@ -1,6 +1,6 @@
 <?php
-	include("login_config.php");
-	require_once("libs/ts3phpframework/libraries/TeamSpeak3/TeamSpeak3.php");
+	include("./login_config.php");
+	require_once("./libs/ts3phpframework/libraries/TeamSpeak3/TeamSpeak3.php");
 
   $config["ts"]["username"] 			= "ServerQuery";
   $config["ts"]["password"] 			= "ATJSH+fE";
