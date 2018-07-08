@@ -281,17 +281,6 @@ nav ul li .drop-container {
 	z-index: 10;
 }
 
-<<<<<<< HEAD
-=======
-/* #loader-container > img {
-	width: 10rem;
-	height: 10rem;
-	top: calc(50% - 10rem);
-	left: calc(50% - 10rem);
-	position: absolute;
-} */
-
->>>>>>> dd9f6c69d389267c2ee03e73b3a5cf99dff383c1
 .container {
 	width: 100%;
 	float: left;
