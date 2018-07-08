@@ -1,5 +1,5 @@
 <?php
-	include("./login_config.php");
+	// include("./login_config.php");
 	require_once("./libs/ts3phpframework/libraries/TeamSpeak3/TeamSpeak3.php");
 
 	//This is only a temporary solution until the config wizard is implemented
