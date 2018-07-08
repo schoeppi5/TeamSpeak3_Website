@@ -274,20 +274,20 @@ nav ul li .drop-container {
 #loader-container {
 	width: 100vw;
 	height: 100vh;
-	background-color: var(--bg-color);
+	background: var(--bg-color) url('../img/preloader.svg') no-repeat center center;
 	position: absolute;
 	top: 0;
 	left: 0;
 	z-index: 10;
 }
 
-#loader-container > img {
+/* #loader-container > img {
 	width: 10rem;
 	height: 10rem;
 	top: calc(50% - 10rem);
 	left: calc(50% - 10rem);
 	position: absolute;
-}
+} */
 
 .container {
 	width: 100%;
