@@ -1,13 +1,13 @@
 function getNav()
 {
-	$('header').load("./include/nav.html", function()
+	$('header').load("/include/nav.html", function()
 	{
 		resize();
 	});
 }
 
 function resize(){
-	$.getScript("./script/js/nav.js").done(function()
+	$.getScript("/script/js/nav.js").done(function()
 	{
 		resize();
 	});
@@ -15,9 +15,9 @@ function resize(){
 
 function getDashboard()
 {
-	$('#main').load("./include/dashboard.html", function()
+	$('#main').load("/include/dashboard.html", function()
 	{
-		$.getScript("./script/js/dashboard.js").done(function()
+		$.getScript("/script/js/dashboard.js").done(function()
 		{
 			getLogin();
 			getTeamSpeak();

@@ -17,7 +17,7 @@ function resize()
 
 $('nav').ready(function()
 {
-	$.getScript("./script/js/login.js").done(function()
+	$.getScript("/script/js/login.js").done(function()
 	{
 		rememberLogin();
 	});

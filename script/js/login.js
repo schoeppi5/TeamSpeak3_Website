@@ -41,13 +41,13 @@ function checkUID()
 
 	$.ajax({
 		type : 'POST',
-		url  : './script/php/checkUid.php',
+		url  : '/script/php/checkUid.php',
 		data : data,
 		success :  function(response) {
 			response = $.parseJSON(response);
 			if(response.status == "200")
 			{
-				$('#profile-dashlet').load("./include/key.html");
+				$('#profile-dashlet').load("/include/key.html");
 			}
 			else
 			{
@@ -62,13 +62,13 @@ function login(){
 
 	$.ajax({
 		type : 'POST',
-		url  : './script/php/login.php',
+		url  : '/script/php/login.php',
 		data : data,
 		success :  function(response) {
 			response = $.parseJSON(response);
 			if(response.status == "200")
 			{
-				$('#profile-dashlet').load("./include/key.html");
+				$('#profile-dashlet').load("/include/key.html");
 			}
 			else
 			{

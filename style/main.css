@@ -354,6 +354,12 @@ nav ul li .drop-container {
 	}
 }
 
+@media only screen and (max-width: 650px)
+{
+	* {
+		font-size: 14px;
+	}
+}
 /***profile-dashlet***/
 #profile-dashlet {
 	float: right;
