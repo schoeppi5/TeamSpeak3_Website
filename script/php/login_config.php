@@ -5,9 +5,8 @@
 	if(session_id() == '') {
 		session_start();
 	}
-	if(isset($_COOKIE['userID']) && !empty($_COOKIE['userID']))
-	{
-		$_SESSION['userID'] = $_COOKIE['userID'];
-	}
-	$pdo = new PDO('mysql:host=localhost;dbname=user', 'root', '');
+
+	$pdo = new PDO('mysql:host=localhost;', 'root', '');
+
+	$pdo->exec("USE IF EXISTS teamspeak");
 ?>

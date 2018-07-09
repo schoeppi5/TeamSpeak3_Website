@@ -274,11 +274,30 @@ nav ul li .drop-container {
 #loader-container {
 	width: 100vw;
 	height: 100vh;
-	background: var(--bg-color) url('../img/preloader.svg') no-repeat center center;
+	background: var(--bg-color) url('/img/preloader.svg') no-repeat center center;
 	position: absolute;
 	top: 0;
 	left: 0;
 	z-index: 10;
+}
+
+#login-container {
+	width: 100vw;
+	height: 100vh;
+	background-color: var(--bg-color);
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 9;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#login-mask {
+	width: 25%;
+	position: relative;
+	background-color: var(--dashlet-color);
 }
 
 .container {
@@ -366,7 +385,7 @@ nav ul li .drop-container {
 	width: 25%;
 }
 
-/***teamspeak***/
+/***teamspeak-dashlet***/
 #ts-dashlet {
 	width: 70%;
 }
