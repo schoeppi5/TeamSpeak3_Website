@@ -1,35 +1,35 @@
-$('#login-form').submit(function(event)
+$('#key-form').submit(function(event)
 {
 	event.preventDefault();
 }).validate({
 	rules: {
-			uid: {required: true}
+			code: {required: true}
 	},
 	messages: {
-		uid: "Please enter your unique identifier",
+		code: "Please enter the key you recieved",
 	},
 	errorPlacement: function(error, element) {
 		element.attr("placeholder", error.text());
 	},
 	submitHandler: function() {
-		checkUID();
+		login();
 	}
 });
 
-function checkUID()
-{
-	var data = $("#uid").serialize();
+function login(){
+	var data = $("#key-form").serialize();
 
 	$.ajax({
 		type : 'POST',
-		url  : '/script/php/checkUid.php',
+		url  : '/script/php/check_key.php',
 		data : data,
 		success :  function(response) {
 			response = $.parseJSON(response);
 			if(response.status == "200")
 			{
-				$('#profile-dashlet').load("/include/key.html");
-				$.getScript("/script/js/key.js");
+				$.getScript("/script/js/user.js").done(function(){
+          getClient();
+        });
 			}
 			else
 			{

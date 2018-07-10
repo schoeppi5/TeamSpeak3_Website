@@ -47,22 +47,22 @@
         $power = "Guest";
       }
 
-      $clients = array_merge($clients, array(array("client_name" => $client->client_nickname->toString(), "client_power" => $power)));
+      $clients = array_merge($clients, array(array("client_name" => $client->client_nickname->toString(), "client_power" => $power, "client_uid" => $client->client_unique_identifier->toString())));
     }
 
     $response = array_merge($response, $clients);
   }
   catch (TeamSpeak3_Adapter_ServerQuery_Exception $e)
   {
-    $response = array("status" => "502", "message" => "Unable to connect to query!", "errormsg" => $e);
+    $response = array("status" => "502", "message" => "Unable to connect to query!", "errormsg" => $e->getMessage());
   }
   catch (TeamSpeak3_Exception $e)
   {
-    $response = array("status" => "500", "message" => "Internal Server Error!", "errormsg" => $e);
+    $response = array("status" => "500", "message" => "Internal Server Error!", "errormsg" => $e->getMessage());
   }
   catch (Exception $e)
   {
-    $response = array("status" => "400", "message" => "Bad Request!", "errormsg" => $e);
+    $response = array("status" => "400", "message" => "Bad Request!", "errormsg" => $e->getMessage());
   }
 
   echo json_encode($response);

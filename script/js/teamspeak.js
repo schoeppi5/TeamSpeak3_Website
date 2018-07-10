@@ -36,7 +36,7 @@ function loadClients()
     type : 'POST',
     url  : '/script/php/get_online_clients.php',
     success :  function(response) {
-      // console.log(response);
+      console.log(response);
       response = $.parseJSON(response);
       if(response.status == "200")
       {

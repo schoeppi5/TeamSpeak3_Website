@@ -8,5 +8,5 @@
 
 	$pdo = new PDO('mysql:host=localhost;', 'root', '');
 
-	$pdo->exec("USE IF EXISTS teamspeak");
+	$pdo->exec("USE teamspeak");
 ?>

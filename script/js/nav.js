@@ -15,13 +15,8 @@ function resize()
 	}
 }
 
-$('nav').ready(function()
+$(document).ready(function()
 {
-	$.getScript("/script/js/login.js").done(function()
-	{
-		rememberLogin();
-	});
-
 	$('.drop-btn').click(function()
 	{
 		$('.hamburger').toggleClass("is-active");

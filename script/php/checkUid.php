@@ -32,20 +32,25 @@
 
 			$ts3_VirtualServer->clientGetByUid($uid)->poke("Authentication key: ".$key);
 
+			$statement = $pdo->prepare("DELETE FROM valid WHERE tsuid = :uid");
+			$statement->execute(array("uid" => $uid));
+			$statement = $pdo->prepare("INSERT INTO valid (tsuid, code) VALUES (:uid, :key)");
+			$statement->execute(array("uid" => $uid, "key" => $key));
+
 			$response = array("status" => "200", "message" => "Uid validated!");
 
 		}
 		catch (TeamSpeak3_Adapter_ServerQuery_Exception $e)
 		{
-			$response = array("status" => "502", "message" => "Unable to connect to query!", "errormsg" => $e);
+			$response = array("status" => "502", "message" => "Unable to connect to query!", "errormsg" => $e->getMessage());
 		}
 		catch (TeamSpeak3_Exception $e)
 		{
-			$response = array("status" => "500", "message" => "Internal Server Error!", "errormsg" => $e);
+			$response = array("status" => "500", "message" => "Internal Server Error!", "errormsg" => $e->getMessage());
 		}
 		catch (Exception $e)
 		{
-			$response = array("status" => "400", "message" => "Bad Request!", "errormsg" => $e);
+			$response = array("status" => "400", "message" => "Bad Request!", "errormsg" => $e->getMessage());
 		}
 	}
 	else

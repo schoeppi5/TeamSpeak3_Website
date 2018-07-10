@@ -333,6 +333,11 @@ nav ul li .drop-container {
 	padding: .25rem;
 }
 
+.dashlet-head {
+	float: left;
+	width: 100%;
+}
+
 .dashlet h1 {
 	font-size: 2rem;
 }

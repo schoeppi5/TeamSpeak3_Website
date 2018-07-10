@@ -1,13 +1,23 @@
 function getLogin()
 {
   $.ajax({
-    type: "GET",
-    url: "/include/login.html",
-    success : function(text)
-    {
-       $('#profile-dashlet').append(text);
-    }
-  });
+		type : 'POST',
+		url  : '/script/php/query_client_info.php',
+		success :  function(response) {
+			response = $.parseJSON(response);
+			if(response.status == "200")
+			{
+        $.getScript("/script/js/user.js").done(function(){
+          fillProfile(response);
+        });
+			}
+			else
+			{
+				$('#profile-dashlet').load("/include/login.html");
+        $.getScript("/script/js/login.js");
+			}
+		}
+	});
 }
 
 function getTeamSpeak()
