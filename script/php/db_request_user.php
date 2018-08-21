@@ -1,5 +1,6 @@
 <?php
   include("login_config.php");
+	include("./messageHandler.php");
 
   $response = "";
 
@@ -12,15 +13,16 @@
 
     if($user !== false)
     {
-      $response = array("status" => "200", "email" => $user["email"], "username" => $user["username"]);
+      $res = new response("200", "User fetched");
+      $res->mergeArray(array("email" => $user["email"], "username" => $user["username"]));
     }
     else {
-      $response = array('status' => "404", 'message' => "User not found!");
+      $res = new response("404", "User not found");
     }
   }
   else {
-    $response = array('status' => '400', 'message' => 'No user logged in');
+    $res = new response("404", "No user logged in");
   }
 
-  echo json_encode($response);
+  echo $res->getJSON();
 ?>

@@ -36,14 +36,16 @@ function loadClients()
     type : 'POST',
     url  : '/script/php/get_online_clients.php',
     success :  function(response) {
-      console.log(response);
       response = $.parseJSON(response);
       if(response.status == "200")
       {
         $('#ts-dashlet-right').html("");
         $.each(response, function(i, obj) {
           if(obj.hasOwnProperty('client_name')){
-            $('#ts-dashlet-right').append("<div class=\"ts-user\"><div class=\"ts-user-name left\">" + obj.client_name + "</div><div class=\"ts-user-level right\">" + obj.client_power + "</div></div>");
+            $('#ts-dashlet-right').append("<div class=\"ts-user\" onclick=\"pokeClient('" + obj.client_uid + "')\"><div class=\"ts-user-name left\">"
+              + (obj.client_state >= 1 ? "<img src=\"/script/php/libs/ts3phpframework/images/viewericons/client_"
+                + (obj.client_state > 1 ? "snd" : "mic") + "_muted.png\" />" : "")
+              + obj.client_name + "</div><div class=\"ts-user-level right\">" + obj.client_power + "</div></div>");
           }
         });
         if($('#ts-dashlet-right').children().length === 0){
@@ -68,6 +70,20 @@ function loadClients()
       }
     }
   });
+}
+
+function pokeClient(uid){
+  var msg = prompt("Enter Message:", "");
+  $.ajax({
+    type: 'POST',
+    url: '/script/php/poke_client.php',
+    data: {uid: uid, msg: msg},
+    success: function(response){
+      // console.log(response);
+      response = $.parseJSON(response);
+
+    }
+  })
 }
 
 function tsreload(){

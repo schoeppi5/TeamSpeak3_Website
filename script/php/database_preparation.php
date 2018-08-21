@@ -35,6 +35,8 @@
     $result = $statement->execute(array("passwd" => $passwd));
 
     $pdo->commit();
+
+    echo "Finished!"
   }
   catch(PDOException $e)
   {

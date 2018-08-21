@@ -1,5 +1,6 @@
 <?php
   include("login_config.php");
+	include("./messageHandler.php");
 
   if(isset($_COOKIE["uid"])){
     $uid = $_COOKIE["uid"];
@@ -12,16 +13,18 @@
       echo $uid;
       $statement = $pdo->prepare("DELETE FROM users WHERE uid = :uid");
       $statement->execute(array("uid" => $uid));
+      $response = array("status" => "200", "message" => "User logged out");
     }
 		catch (Exception $e)
 		{
-			$response = array("status" => "500", "message" => "Internal server error", "errormsg" => $e->getMessage());
+      $res = new response("500", "Internal server error");
+      $res->addErrorMessage($e);
 		}
-    $response = array("status" => "200", "message" => "User logged out");
   }
   else {
-    $response = array("status" => "404", "message" => "User not found", "errormsg" => "No cookie found");
+    $res = new response("404", "User not found");
+    $res->addErrorMessage("Either there was no cookie set or the set uid wasn't found in the database");
   }
 
-  echo json_encode($response);
+  echo $res->getJSON();
 ?>

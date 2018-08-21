@@ -1,5 +1,6 @@
 <?php
   include("login_config.php");
+	include("./messageHandler.php");
 
   if(isset($_POST["username"]) && isset($_POST["password"]))
   {
@@ -12,15 +13,17 @@
       $user = $resultset->fetch();
 
       if($user !== false){
-        
+
       }
     }
     catch(PDOException $e)
     {
-      $response = array("status" => "404", "message" => "User not found", "errormsg" => $e->getMessage());
+      $res = new response("404", "User not found");
+      $res->addErrorMessage($e);
     }
   }
   else {
-    $response = array("status" => "400", "message" => "Bad Request!", "errormsg" => "No parameters recieved");
+    $res = new response("400", "Bad Request");
+    $res->addErrorMessage("No parameters submitted");
   }
  ?>

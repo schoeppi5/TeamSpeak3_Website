@@ -1,5 +1,6 @@
 <?php
 	include("login_config.php");
+	include("./messageHandler.php");
 
   function rndKey($length)
 	{
@@ -42,32 +43,36 @@
           setcookie('uid', $code, time() + (365 * 24 * 60 * 60), "/");
         }
         $_SESSION["uid"] = $resultset["tsuid"];
-  			$response = array("status" => "200", "message" => "Logged in");
+				$res = new response("200", "Logged in");
       }
       else{
-        $response = array("status" => "404", "message" => "Key not found");
+				$res = new response("404", "Key not found");
       }
 
 		}
 		catch (TeamSpeak3_Adapter_ServerQuery_Exception $e)
 		{
-			$response = array("status" => "502", "message" => "Unable to connect to query!", "errormsg" => $e);
+			$res = new response("502", "Unable to connect to query");
+			$res->addErrorMessage($e);
 		}
 		catch (TeamSpeak3_Exception $e)
 		{
-			$response = array("status" => "500", "message" => "Internal Server Error!", "errormsg" => $e);
+			$res = new response("500", "Internal server error");
+			$res->addErrorMessage($e);
 		}
 		catch (Exception $e)
 		{
-			$response = array("status" => "400", "message" => "Bad Request!", "errormsg" => $e);
+			$res = new response("400", "Bad request");
+			$res->addErrorMessage($e);
 		}
 	}
 	else
 	{
-		$response = array("status" => "400", "message" => "Bad Request!", "errormsg" => "No request was submitted!");
+		$res = new response("502", "Bad request");
+		$res->addErrorMessage("No request was submitted");
 	}
 
 
-	echo json_encode($response);
+	echo $res->getJSON();
 
 ?>

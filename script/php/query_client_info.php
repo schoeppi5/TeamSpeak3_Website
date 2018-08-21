@@ -1,6 +1,7 @@
 <?php
 	include("./login_config.php");
 	require_once("./libs/ts3phpframework/libraries/TeamSpeak3/TeamSpeak3.php");
+	include("./messageHandler.php");
 
   $config["ts"]["username"] 			= "ServerQuery";
   $config["ts"]["password"] 			= "ATJSH+fE";
@@ -49,25 +50,29 @@
 
       $clientinfo = array("client_name" => $client->client_nickname->toString(), "client_power" => $power, "client_uid" => $client->client_unique_identifier->toString());
 
-      $response = array("status" => "200", "message" => "Queried client successfully");
-      $response = array_merge($response, $clientinfo);
+			$res = new response("200", "Client queried successfully");
+			$res->mergeArray($clientinfo);
     }
     catch (TeamSpeak3_Adapter_ServerQuery_Exception $e)
     {
-      $response = array("status" => "502", "message" => "Unable to connect to query!", "errormsg" => $e->getMessage());
+			$res = new response("502", "Unable to connect to query");
+			$res->addErrorMessage($e);
     }
     catch (TeamSpeak3_Exception $e)
     {
-      $response = array("status" => "500", "message" => "Internal Server Error!", "errormsg" => $e->getMessage());
+			$res = new response("500", "Internal server error");
+			$res->addErrorMessage($e);
     }
     catch (Exception $e)
     {
-      $response = array("status" => "400", "message" => "Bad Request!", "errormsg" => $e->getMessage());
+			$res = new response("400", "Bad request");
+			$res->addErrorMessage($e);
     }
   }
   else {
-    $response = array("status" => "404", "message" => "No User logged in!", "errormsg" => "No cookie was found");
+		$res = new response("404", "No user logged in");
+		$res->addErrorMessage("Either there was no cookie set or the set uid wasn't found in the database");
   }
 
-  echo json_encode($response);
+  echo $res->getJSON();
 ?>

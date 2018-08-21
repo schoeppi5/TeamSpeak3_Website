@@ -7,6 +7,7 @@
 	--accent-two: #8e8e8e;
 	--dashlet-color: #ffffff;
 	--error-color: #ff4141;
+	--warning-color: #ff8686;
 }
 
 * {
@@ -416,4 +417,14 @@ nav ul li .drop-container {
 #ts-reload > button {
 	float: right;
 	width: 20%;
+}
+
+.ts-user {
+	float: left;
+	width: 100%;
+	cursor: pointer;
+}
+
+.ts-user:hover{
+	background-color: var(--menu-color);
 }

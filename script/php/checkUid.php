@@ -1,6 +1,7 @@
 <?php
 	include("login_config.php");
 	require_once("libs/ts3phpframework/libraries/TeamSpeak3/TeamSpeak3.php");
+	include("./messageHandler.php");
 
 	//This is only a temporary solution until the config wizard is implemented
 	$config["ts"]["username"] 			= "ServerQuery";
@@ -37,27 +38,31 @@
 			$statement = $pdo->prepare("INSERT INTO valid (tsuid, code) VALUES (:uid, :key)");
 			$statement->execute(array("uid" => $uid, "key" => $key));
 
-			$response = array("status" => "200", "message" => "Uid validated!");
+			$res = new response("200", "UID validated");
 
 		}
 		catch (TeamSpeak3_Adapter_ServerQuery_Exception $e)
 		{
-			$response = array("status" => "502", "message" => "Unable to connect to query!", "errormsg" => $e->getMessage());
+			$res = new response("502", "Unable to connect to query");
+			$res->addErrorMessage($e);
 		}
 		catch (TeamSpeak3_Exception $e)
 		{
-			$response = array("status" => "500", "message" => "Internal Server Error!", "errormsg" => $e->getMessage());
+			$res = new response("500", "Internal server error");
+			$res->addErrorMessage($e);
 		}
 		catch (Exception $e)
 		{
-			$response = array("status" => "400", "message" => "Bad Request!", "errormsg" => $e->getMessage());
+				$res = new response("400", "Bad request");
+				$res->addErrorMessage($e);
 		}
 	}
 	else
 	{
-		$response = array("status" => "400", "message" => "Bad Request!", "errormsg" => "No request was submitted!");
+		$res = new response("400", "Bad request");
+		$res->addErrorMessage("No request was submitted");
 	}
 
 
-	echo json_encode($response);
+	echo $res->getJSON();
 ?>
