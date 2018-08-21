@@ -27,6 +27,19 @@ function getAdminLogin()
 function checkLogin(){
   $('#login-mask').hide();
   $('#login-container').css("background", "var(--bg-color) url('/img/loading.svg') no-repeat center center");
+
+	var data = $('#admin-login').serialize();
+
+	$.ajax({
+		type: "POST",
+		url: "/script/php/check_login_admin.php",
+		data: data,
+		success: function(response){
+			console.log(response);
+			response = $.parseJSON(response);
+			$('#login-container').hide();
+		}
+	});
 }
 
 $(document).ready(function(){

@@ -36,7 +36,7 @@
 
     $pdo->commit();
 
-    echo "Finished!"
+    echo "Finished!";
   }
   catch(PDOException $e)
   {

@@ -2,18 +2,26 @@
   include("login_config.php");
 	include("./messageHandler.php");
 
-  if(isset($_POST["username"]) && isset($_POST["password"]))
+  if(isset($_POST["username"]) && isset($_POST["passwd"]))
   {
     $username = $_POST["username"];
-    $password = $_POST["password"];
+    $password = $_POST["passwd"];
 
     try{
       $statement = $pdo->prepare("SELECT * FROM admin WHERE username = :username");
-      $resultset = $statement->execute(array("username" => $username));
-      $user = $resultset->fetch();
+      $statement->execute(array("username" => $username));
+      $user = $statement->fetch();
 
       if($user !== false){
-
+        if(password_verify($password, $user['password'])){
+          $res = new response("200", "Logged in");
+        }
+        else {
+          $res = new response("403", "Access denied");
+        }
+      }
+      else {
+        $res = new response("404", "Username not found");
       }
     }
     catch(PDOException $e)
@@ -26,4 +34,6 @@
     $res = new response("400", "Bad Request");
     $res->addErrorMessage("No parameters submitted");
   }
+
+  echo $res->getJSON();
  ?>
