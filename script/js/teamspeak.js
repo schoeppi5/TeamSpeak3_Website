@@ -79,9 +79,11 @@ function pokeClient(uid){
     url: '/script/php/poke_client.php',
     data: {uid: uid, msg: msg},
     success: function(response){
-      // console.log(response);
+      console.log(response);
       response = $.parseJSON(response);
-
+      if(response.status !== "200"){
+        errorHandler(response);
+      }
     }
   })
 }

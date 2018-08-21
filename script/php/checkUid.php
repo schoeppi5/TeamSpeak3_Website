@@ -1,14 +1,6 @@
 <?php
-	include("login_config.php");
-	require_once("libs/ts3phpframework/libraries/TeamSpeak3/TeamSpeak3.php");
 	include("./messageHandler.php");
-
-	//This is only a temporary solution until the config wizard is implemented
-	$config["ts"]["username"] 			= "ServerQuery";
-	$config["ts"]["password"] 			= "ATJSH+fE";
-	$config["ts"]["host"]				= "suchtclub.de";
-	$config["ts"]["port"]				= "9987";
-	$config["ts"]["queryport"]			= "10011";
+	include("./libs/ts3_server_connection_helper.php");
 
 	function rndKey($length)
 	{
@@ -27,19 +19,23 @@
 		$uid = $_POST['uid'];
 		try
 		{
-			$ts3_VirtualServer = TeamSpeak3::factory("serverquery://".$config["ts"]["username"].":".$config["ts"]["password"]."@".$config["ts"]["host"].":".$config["ts"]["queryport"]."/?server_port=".$config["ts"]["port"]);
+			$ts3_VirtualServer = new ts3Server();
+			if($ts3_VirtualServer){
 
-			$key = rndKey(10);
+				$key = rndKey(10);
 
-			$ts3_VirtualServer->clientGetByUid($uid)->poke("Authentication key: ".$key);
+				$ts3_VirtualServer->getServerConnection()->clientGetByUid($uid)->poke("Authentication key: ".$key);
 
-			$statement = $pdo->prepare("DELETE FROM valid WHERE tsuid = :uid");
-			$statement->execute(array("uid" => $uid));
-			$statement = $pdo->prepare("INSERT INTO valid (tsuid, code) VALUES (:uid, :key)");
-			$statement->execute(array("uid" => $uid, "key" => $key));
+				$statement = $pdo->prepare("DELETE FROM valid WHERE tsuid = :uid");
+				$statement->execute(array("uid" => $uid));
+				$statement = $pdo->prepare("INSERT INTO valid (tsuid, code) VALUES (:uid, :key)");
+				$statement->execute(array("uid" => $uid, "key" => $key));
 
-			$res = new response("200", "UID validated");
-
+				$res = new response("200", "UID validated");
+			}
+			else {
+				$res = $ts3_VirtualServer->getError();
+			}
 		}
 		catch (TeamSpeak3_Adapter_ServerQuery_Exception $e)
 		{
@@ -62,7 +58,6 @@
 		$res = new response("400", "Bad request");
 		$res->addErrorMessage("No request was submitted");
 	}
-
 
 	echo $res->getJSON();
 ?>

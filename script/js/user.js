@@ -27,7 +27,6 @@ function clientLogout(){
     type: 'POST',
     url: '/script/php/logout_client.php',
     success :  function(response) {
-      console.log(response);
 			response = $.parseJSON(response);
 			if(response.status == "200")
 			{

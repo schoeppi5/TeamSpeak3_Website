@@ -1,57 +1,50 @@
 <?php
 	include("./login_config.php");
-	require_once("./libs/ts3phpframework/libraries/TeamSpeak3/TeamSpeak3.php");
 	include("./messageHandler.php");
-
-  $config["ts"]["username"] 			= "ServerQuery";
-  $config["ts"]["password"] 			= "ATJSH+fE";
-  $config["ts"]["host"]				= "37.120.184.91";
-  $config["ts"]["port"]				= "9987";
-  $config["ts"]["queryport"]			= "10011";
-  $config["ts"]["adminGroupId"]		= "6";
-  $config["ts"]["moderatorGroupId"]	= "12";
-  $config["ts"]["memberGroupId"]		= "7";
+	include("./libs/ts3_server_connection_helper.php");
 
   if(isset($_SESSION["uid"]))
   {
     $uid = $_SESSION["uid"];
     try
     {
+			$ts3_VirtualServer = new ts3Server();
+			if($ts3_VirtualServer){
 
-      $connectionString = "serverquery://".$config["ts"]["username"].":".$config["ts"]["password"]."@".$config["ts"]["host"].":".$config["ts"]["queryport"]."/?server_port=".$config["ts"]["port"]."#no_query_clients";
+  			$client = $ts3_VirtualServer->getServerConnection()->clientGetByUid($uid);
 
-      $ts3_VirtualServer = TeamSpeak3::factory($connectionString);
+	      $power = "";
+	      foreach($client->memberOf() as $ts3_group)
+	      {
+	        if($ts3_group->getUniqueId() == $ts3_VirtualServer->getServerConnection()->serverGroupGetById($ts3_VirtualServer->getAdminGroup())->getUniqueId())
+	        {
+	          $power = "Admin";
+	          break;
+	        }
+	        elseif($ts3_group->getUniqueId() == $ts3_VirtualServer->getServerConnection()->serverGroupGetById($ts3_VirtualServer->getModeratorGroup())->getUniqueId())
+	        {
+	          $power = "Moderator";
+	          break;
+					}
+	        elseif($ts3_group->getUniqueId() == $ts3_VirtualServer->getServerConnection()->serverGroupGetById($ts3_VirtualServer->getMemberGroup())->getUniqueId())
+	        {
+	          $power = "Dude";
+	          break;
+	        }
+	      }
+	      if($power == "")
+	      {
+	        $power = "Guest";
+	      }
 
-  		$client = $ts3_VirtualServer->clientGetByUid($uid);
+	      $clientinfo = array("client_name" => $client->client_nickname->toString(), "client_power" => $power, "client_uid" => $client->client_unique_identifier->toString());
 
-      $power = "";
-      foreach($client->memberOf() as $ts3_group)
-      {
-        if($ts3_group->getUniqueId() == $ts3_VirtualServer->serverGroupGetById($config["ts"]["adminGroupId"])->getUniqueId())
-        {
-          $power = "Admin";
-          break;
-        }
-        elseif($ts3_group->getUniqueId() == $ts3_VirtualServer->serverGroupGetById($config["ts"]["moderatorGroupId"])->getUniqueId())
-        {
-          $power = "Moderator";
-          break;
-        }
-        elseif($ts3_group->getUniqueId() == $ts3_VirtualServer->serverGroupGetById($config["ts"]["memberGroupId"])->getUniqueId())
-        {
-          $power = "Dude";
-          break;
-        }
-      }
-      if($power == "")
-      {
-        $power = "Guest";
-      }
-
-      $clientinfo = array("client_name" => $client->client_nickname->toString(), "client_power" => $power, "client_uid" => $client->client_unique_identifier->toString());
-
-			$res = new response("200", "Client queried successfully");
-			$res->mergeArray($clientinfo);
+				$res = new response("200", "Client queried successfully");
+				$res->mergeArray($clientinfo);
+			}
+			else{
+				$res = $ts3_VirtualServer->getError();
+			}
     }
     catch (TeamSpeak3_Adapter_ServerQuery_Exception $e)
     {

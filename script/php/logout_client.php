@@ -10,10 +10,9 @@
 
     try
     {
-      echo $uid;
       $statement = $pdo->prepare("DELETE FROM users WHERE uid = :uid");
       $statement->execute(array("uid" => $uid));
-      $response = array("status" => "200", "message" => "User logged out");
+      $res = new response("200", "User logged out");
     }
 		catch (Exception $e)
 		{

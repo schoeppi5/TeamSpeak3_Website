@@ -3,21 +3,21 @@
   include("./libs/ts3_server_connection_helper.php");
   include("./libs/db_user_helper.php");
 
-  $uidPoked = $_POST["uid"];
-  $msg = $_POST["msg"];
-  $uidPoker = $_COOKIE["uid"];
-
-  if(!isset($uidPoked)){
+  if(!isset($_POST["uid"]) || empty($_POST["uid"])){
     $res = new response("400", "Bad request");
     $res->addErrorMessage("No uid submitted");
     die($res->getJSON());
   }
 
-  if(!isset($uidPoker)){
+  if(!isset($_COOKIE["uid"]) || empty($_COOKIE["uid"])){
     $res = new response("400", "Bad request");
     $res->addErrorMessage("No user logged in");
     die($res->getJSON());
   }
+
+  $uidPoked = $_POST["uid"];
+  $msg = $_POST["msg"];
+  $uidPoker = $_COOKIE["uid"];
 
   try {
     $server = new ts3Server();
