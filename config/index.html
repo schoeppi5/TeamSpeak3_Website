@@ -20,17 +20,26 @@
 			<div class="dashlet" id="ts-config">
 				<h2>TeamSpeak Configuration</h2>
 				<form method="post" id="ts-config-form" class="login-form">
-					<input type="text" name="username" id="username" placeholder="ServerQuery username" />
-					<input type="password" name="password" id="password" placeholder="ServerQuery password" />
-					<input type="text" name="host" id="host" placeholder="TeamSpeak3 hostaddress" />
-					<input type="number" name="port" id="port" min="1" placeholder="TeamSpeak3 port" />
-					<input type="number" name="queryport" id="queryport" min="1" placeholder="TeamSpeak3 queryport" />
-					<input type="number" name="admingroup" id="admingroup" min="1" placeholder="Admin group ID" />
-					<input type="number" name="moderatorgroup" id="moderatorgroup" min="1" placeholder="Moderator group ID" />
-					<input type="number" name="membergroup" id="membergroup" min="1" placeholder="Member group ID" />
+					<input type="text" name="ts-username" id="ts-username" placeholder="ServerQuery username" />
+					<input type="password" name="ts-password" id="ts-password" placeholder="ServerQuery password" />
+					<input type="text" name="ts-host" id="ts-host" placeholder="TeamSpeak3 hostaddress" />
+					<input type="number" name="ts-port" id="ts-port" min="1" placeholder="TeamSpeak3 port" />
+					<input type="number" name="ts-queryport" id="ts-queryport" min="1" placeholder="TeamSpeak3 queryport" />
+					<input type="number" name="ts-admingroup" id="ts-admingroup" min="1" placeholder="Admin group ID" />
+					<input type="number" name="ts-moderatorgroup" id="ts-moderatorgroup" min="1" placeholder="Moderator group ID" />
+					<input type="number" name="ts-membergroup" id="ts-membergroup" min="1" placeholder="Member group ID" />
 					<button type="submit">Save</button>
 				</form>
 				<script src="/script/js/ts_config.js"></script>
+			</div>
+			<div class="dashlet" id="common-config">
+				<h2>Common Configuration</h2>
+				<form method="post" id="common-config-form" class="login-form">
+					<input type="text" name="common-username" id="common-username" placeholder="Username for admin login" />
+					<input type="password" name="common-password" id="common-password" placeholder="Password for admin login" />
+					<button type="submit">Save</button>
+				</form>
+				<script src="/script/js/common_config.js"></script>
 			</div>
 		</div>
 	</body>

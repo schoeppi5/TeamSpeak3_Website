@@ -6,10 +6,10 @@
     return isset($var) && !empty($var);
   }
 
-  if(isValid($_POST["username"]) && isValid($_POST["password"])
-    && isValid($_POST["host"]) && isValid($_POST["port"]) && isValid($_POST["queryport"])
-    && isValid($_POST["admingroup"]) && isValid($_POST["moderatorgroup"])
-    && isValid($_POST["membergroup"])){
+  if(isValid($_POST["ts-username"]) && isValid($_POST["ts-password"])
+    && isValid($_POST["ts-host"]) && isValid($_POST["ts-port"]) && isValid($_POST["ts-queryport"])
+    && isValid($_POST["ts-admingroup"]) && isValid($_POST["ts-moderatorgroup"])
+    && isValid($_POST["ts-membergroup"])){
       try{
         $pdo->exec("DELETE FROM tsconfig");
         $statement = $pdo->prepare("INSERT INTO tsconfig (
@@ -31,14 +31,14 @@
                                       :moderatorgroup,
                                       :membergroup)
                                   ");
-        $statement->execute(array("username" => $_POST["username"],
-                                  "password" => $_POST["password"],
-                                  "host" => $_POST["host"],
-                                  "port" => $_POST["port"],
-                                  "queryport" => $_POST["queryport"],
-                                  "admingroup" => $_POST["admingroup"],
-                                  "moderatorgroup" => $_POST["moderatorgroup"],
-                                  "membergroup" => $_POST["membergroup"]));
+        $statement->execute(array("username" => $_POST["ts-username"],
+                                  "password" => $_POST["ts-password"],
+                                  "host" => $_POST["ts-host"],
+                                  "port" => $_POST["ts-port"],
+                                  "queryport" => $_POST["ts-queryport"],
+                                  "admingroup" => $_POST["ts-admingroup"],
+                                  "moderatorgroup" => $_POST["ts-moderatorgroup"],
+                                  "membergroup" => $_POST["ts-membergroup"]));
         $res = new response("200", "Config saved");
       }
       catch(Exception $e){

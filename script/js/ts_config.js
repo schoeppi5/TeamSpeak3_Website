@@ -38,7 +38,10 @@ function saveTsConfig(){
     url: "/script/php/save_ts_config.php",
     data: data,
     success: function(response){
-      console.log(response);
+      response = $.parseJSON(response);
+      if(response.status == "200"){
+        promptMessage("Configuration saved!", 0, 2500);
+      }
     }
   });
 }
@@ -47,11 +50,10 @@ function loadTsConfig(){
   $.ajax({
     url: "/script/php/load_ts_config.php",
     success: function(response){
-      console.log(response);
       response = $.parseJSON(response);
       if(response.status === "200")
       $.each(response.ts, function(key, value) {
-        $('#' + key).val(value);
+        $('#ts-' + key).val(value);
       });
     }
   });

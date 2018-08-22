@@ -6,7 +6,6 @@
   if(count($array) > 8){
     $res = new response("200", "Data queried");
     $res->mergeArray(array("ts" =>array("username" => $array["username"],
-                                        "password" => $array["password"],
                                         "host" => $array["host"],
                                         "port" => $array["port"],
                                         "queryport" => $array["queryport"],
