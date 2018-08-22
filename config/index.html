@@ -15,8 +15,23 @@
 		<div id="login-container">
     </div>
 		<header></header>
+		<h1>Configuration</h1>
 		<div class="container" id="main">
-      <h1>Configuration</h1>
+			<div class="dashlet" id="ts-config">
+				<h2>TeamSpeak Configuration</h2>
+				<form method="post" id="ts-config-form" class="login-form">
+					<input type="text" name="username" id="username" placeholder="ServerQuery username" />
+					<input type="password" name="password" id="password" placeholder="ServerQuery password" />
+					<input type="text" name="host" id="host" placeholder="TeamSpeak3 hostaddress" />
+					<input type="number" name="port" id="port" min="1" placeholder="TeamSpeak3 port" />
+					<input type="number" name="queryport" id="queryport" min="1" placeholder="TeamSpeak3 queryport" />
+					<input type="number" name="admingroup" id="admingroup" min="1" placeholder="Admin group ID" />
+					<input type="number" name="moderatorgroup" id="moderatorgroup" min="1" placeholder="Moderator group ID" />
+					<input type="number" name="membergroup" id="membergroup" min="1" placeholder="Member group ID" />
+					<button type="submit">Save</button>
+				</form>
+				<script src="/script/js/ts_config.js"></script>
+			</div>
 		</div>
 	</body>
 </html>

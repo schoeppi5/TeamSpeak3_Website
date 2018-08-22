@@ -26,6 +26,10 @@ body {
 	color: var(--txt-color);
 }
 
+body h1 {
+	font-size: 2rem;
+}
+
 /**Header**/
 
 header {

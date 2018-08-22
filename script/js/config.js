@@ -7,11 +7,11 @@ function getAdminLogin()
     	event.preventDefault();
     }).validate({
     	rules: {
-    			username: {required: true},
+    			usern: {required: true},
     			passwd: {required: true}
     	},
     	messages: {
-    		username: "Please enter your username",
+    		usern: "Please enter your username",
     		passwd: "Please enter a password",
     	},
     	errorPlacement: function(error, element) {
@@ -35,7 +35,6 @@ function checkLogin(){
 		url: "/script/php/check_login_admin.php",
 		data: data,
 		success: function(response){
-			console.log(response);
 			response = $.parseJSON(response);
 			$('#login-container').hide();
 		}

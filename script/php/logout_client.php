@@ -2,7 +2,7 @@
   include("login_config.php");
 	include("./messageHandler.php");
 
-  if(isset($_COOKIE["uid"])){
+  if(isset($_COOKIE["uid"]) || isset($_SESSION["uid"])){
     $uid = $_COOKIE["uid"];
 
     setcookie('uid', null, -1, "/");

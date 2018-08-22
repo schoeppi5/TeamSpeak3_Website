@@ -1,17 +1,16 @@
 <?php
-	include("./login_config.php");
 	include("./messageHandler.php");
 	include("./libs/ts3_server_connection_helper.php");
+	include("./libs/db_user_helper.php");
 
-  if(isset($_SESSION["uid"]))
+  if(isset($_SESSION["uid"]) || isset($_COOKIE["uid"]))
   {
-    $uid = $_SESSION["uid"];
     try
     {
 			$ts3_VirtualServer = new ts3Server();
 			if($ts3_VirtualServer){
 
-  			$client = $ts3_VirtualServer->getServerConnection()->clientGetByUid($uid);
+				(isset($_SESSION["uid"]) ? $client = user::fetchTsUserWithTsId($_SESSION["uid"]) : $client = user::fetchTsUserWithId($_COOKIE["uid"]));
 
 	      $power = "";
 	      foreach($client->memberOf() as $ts3_group)

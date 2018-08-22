@@ -22,5 +22,10 @@
       $tsid = self::withId($id)["tsuid"];
       return $server->getServerConnection()->clientGetByDbId($server->getServerConnection()->clientFindDb($tsid, true)[0]);
     }
+
+    public static function fetchTsUserWithTsId($id){
+      $server = new ts3Server();
+      return $server->getServerConnection()->clientGetByDbId($server->getServerConnection()->clientFindDb($id, true)[0]);      
+    }
   }
 ?>

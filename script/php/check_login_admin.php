@@ -2,9 +2,9 @@
   include("login_config.php");
 	include("./messageHandler.php");
 
-  if(isset($_POST["username"]) && isset($_POST["passwd"]))
+  if(isset($_POST["usern"]) && isset($_POST["passwd"]))
   {
-    $username = $_POST["username"];
+    $username = $_POST["usern"];
     $password = $_POST["passwd"];
 
     try{

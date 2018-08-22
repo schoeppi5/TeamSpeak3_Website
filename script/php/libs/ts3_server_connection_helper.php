@@ -4,18 +4,28 @@
   require_once("./messageHandler.php");
 
   class ts3Server {
-    private $username = "ServerQuery";
-    private $password = "ATJSH+fE";
-    private $host = "37.120.184.91";
-    private $port = "9987";
-    private $queryport = "10011";
-    public $adminGroupId = "6";
-    public $moderatorGroupId = "12";
-    public $memberGroupId = "7";
+    private $username = "";
+    private $password = "";
+    private $host = "";
+    private $port = "";
+    private $queryport = "";
+    public $adminGroupId = "";
+    public $moderatorGroupId = "";
+    public $memberGroupId = "";
     private $ts3connection = null;
     public $error = null;
 
     public function __construct(){
+			global $pdo;
+			$statement = $pdo->query("SELECT * FROM tsconfig")->fetch();
+			$this->username = $statement["username"];
+			$this->password = $statement["password"];
+			$this->host = $statement["host"];
+			$this->port = $statement["port"];
+			$this->queryport = $statement["queryport"];
+			$this->adminGroupId = $statement["admingroup"];
+			$this->moderatorGroupId = $statement["moderatorgroup"];
+			$this->memberGroupId = $statement["membergroup"];
       $server = null;
       try
       {
@@ -43,15 +53,18 @@
     }
 
     public function getAdminGroup(){
-      return $this->adminGroupId;
+			global $pdo;
+			return $pdo->query("SELECT admingroup FROM tsconfig")->fetch()["admingroup"];
     }
 
     public function getModeratorGroup(){
-      return $this->moderatorGroupId;
+			global $pdo;
+			return $pdo->query("SELECT moderatorgroup FROM tsconfig")->fetch()["moderatorgroup"];
     }
 
     public function getMemberGroup(){
-      return $this->memberGroupId;
+			global $pdo;
+			return $pdo->query("SELECT membergroup FROM tsconfig")->fetch()["membergroup"];
     }
 
     public function getError(){
