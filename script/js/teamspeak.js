@@ -92,6 +92,8 @@ function pokeClient(uid){
 function tsreload(){
   $('#ts-reload > button').html("<img src=\"/img/reload.svg\" style=\"width: 1rem; height: 1rem\"/>");
   loadInfo();
+  $('#ts-viewer').html("");
+  $('#ts-viewer').hide();
 }
 
 function getTsViewer(){
@@ -120,8 +122,6 @@ function toggleTsViewer(){
 }
 
 function joinChannel(obj){
-  console.log("click");
-  console.log($(obj).text().trim());
   $.ajax({
     url: "/script/php/get_channel_url_by_name.php",
     type: "POST",
