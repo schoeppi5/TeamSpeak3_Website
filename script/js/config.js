@@ -36,7 +36,21 @@ function checkLogin(){
 		data: data,
 		success: function(response){
 			response = $.parseJSON(response);
-			$('#login-container').hide();
+			if(response.status == "200"){
+				$.ajax({
+					url: "/include/config.html",
+					success: function(response){
+						$('body').append(response);
+						$.getScript("/script/js/ts_config.js");
+						$.getScript("/script/js/common_config.js");
+						$('#login-container').hide();
+					}
+				});
+			}
+			else {
+				errorHandler(response);
+				getAdminLogin();
+			}
 		}
 	});
 }

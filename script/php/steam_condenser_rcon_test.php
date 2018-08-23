@@ -18,4 +18,7 @@
     trigger_error('Could not authenticate with the game server.',
     E_USER_ERROR);
   }
+  catch(Exception $e){
+    echo "Test";
+  }
 ?>

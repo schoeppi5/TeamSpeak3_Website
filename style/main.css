@@ -157,7 +157,7 @@ nav ul li .drop-container {
 	width: 100%;
 }
 
-.login-form input:not([type=checkbox]){
+.login-form input:not([type=checkbox]), select{
 	font-size: 1rem;
 	float: left;
 	width: 100%;
@@ -174,6 +174,11 @@ nav ul li .drop-container {
 
 .login-form input:not([type=checkbox]):focus {
 	border-bottom: 1px solid var(--txt-color);
+}
+
+.login-form select option{
+	background-color: var(--accent-one);
+	border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
 }
 
 .login-form span{
@@ -401,7 +406,7 @@ nav ul li .drop-container {
 }
 
 #ts-dashlet-left {
-	border-right: .5px solid var(--accent-one);
+	border-right: 1px solid var(--accent-one);
 	padding: .5rem;
 }
 
@@ -411,7 +416,6 @@ nav ul li .drop-container {
 
 #ts-dashlet-right {
 	padding: .5rem;
-	border-left: .5px solid var(--accent-one);
 }
 
 #ts-container {
@@ -423,6 +427,49 @@ nav ul li .drop-container {
 	width: 20%;
 }
 
+#ts-dashlet-toggle {
+	font-size: 1.5rem;
+}
+
+.ts-viewer-server {
+	font-size: 2rem;
+	float: left;
+	width: 100%;
+	text-align: center;
+}
+
+.ts-viewer-spacer {
+	font-size: 1.25rem;
+	float: left;
+	width: 100%;
+	padding-left: .5rem;
+	margin-top: .25rem;
+	margin-bottom: .25rem;
+}
+
+.ts-viewer-channel {
+	font-size: 1rem;
+	float: left;
+	width: 100%;
+	padding-left: .75rem;
+	cursor: pointer;
+}
+
+.ts-viewer-channel:hover{
+	background-color: var(--menu-color);
+}
+
+.ts-viewer-client {
+	font-size: 1rem;
+	float: left;
+	width: 100%;
+	padding-left: 1.25rem;
+}
+
+#ts-viewer {
+	display: none;
+}
+
 .ts-user {
 	float: left;
 	width: 100%;
@@ -431,4 +478,18 @@ nav ul li .drop-container {
 
 .ts-user:hover{
 	background-color: var(--menu-color);
+}
+
+.config {
+	margin: 2rem;
+	width: 100%;
+}
+
+.server-config-tab {
+	float: left;
+	background-color: var(--menu-color);
+	color: black;
+	margin: 1rem;
+	padding: 1rem;
+	width: calc(100% - 2rem);
 }

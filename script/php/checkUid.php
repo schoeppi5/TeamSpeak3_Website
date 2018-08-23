@@ -20,7 +20,7 @@
 		try
 		{
 			$ts3_VirtualServer = new ts3Server();
-			if($ts3_VirtualServer){
+			if($ts3_VirtualServer->getServerConnection()){
 
 				$key = rndKey(10);
 

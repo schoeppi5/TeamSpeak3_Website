@@ -6,9 +6,10 @@
   try
   {
 		$ts3_VirtualServer = new ts3Server();
-		if($ts3_VirtualServer){
+		if($ts3_VirtualServer->getServerConnection()){
 
 			$res = new response("200", "Node info fetched");
+
 
 	    $ts3_info = array("server_name" => $ts3_VirtualServer->getServerConnection()->virtualserver_name->toString(),
 			"server_maxclients" => $ts3_VirtualServer->getServerConnection()->virtualserver_maxclients,

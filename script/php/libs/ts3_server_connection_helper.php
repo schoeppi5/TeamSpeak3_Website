@@ -19,7 +19,7 @@
 			global $pdo;
 			$statement = $pdo->query("SELECT * FROM tsconfig")->fetch();
 			$this->username = $statement["username"];
-			$this->password = $statement["password"];
+			$this->password = base64_decode($statement["password"]);
 			$this->host = $statement["host"];
 			$this->port = $statement["port"];
 			$this->queryport = $statement["queryport"];
@@ -48,7 +48,7 @@
       }
       finally{
         $this->ts3connection = $server;
-        return $server == null;
+        return $server != null;
       }
     }
 
@@ -74,5 +74,21 @@
     public function getServerConnection(){
       return $this->ts3connection;
     }
+
+		public function getHost(){
+			return $this->host;
+		}
+
+		public function getPort(){
+			return $this->port;
+		}
+
+		public function getServerViewer(){
+			return $this->ts3connection->getViewer(new TeamSpeak3_Viewer_Html("/script/php/libs/ts3phpframework/images/viewericons/", "/script/php/libs/ts3phpframework/images/countryflags/", "data:image"));
+		}
+
+		public function getChannelByName($name){
+			return $this->ts3connection->channelGetByName($name);
+		}
   }
 ?>

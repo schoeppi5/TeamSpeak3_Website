@@ -21,7 +21,7 @@
 
   try {
     $server = new ts3Server();
-    if($server){
+    if($server->getServerConnection()){
       $server->getServerConnection()->clientGetByUid($uidPoked)->poke(user::fetchTsUserWithId($uidPoker)->client_nickname .
       ($msg == "" ? " poked you" : ": ".$msg));
       $res = new response("200", "Client poked");

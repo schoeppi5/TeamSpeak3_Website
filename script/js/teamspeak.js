@@ -25,6 +25,8 @@ function loadInfo()
 			else
 			{
 				errorHandler(response);
+        $('#ts-dashlet').hide();
+        $('#profile-dashlet').hide();
 			}
 		}
 	});
@@ -90,4 +92,43 @@ function pokeClient(uid){
 function tsreload(){
   $('#ts-reload > button').html("<img src=\"/img/reload.svg\" style=\"width: 1rem; height: 1rem\"/>");
   loadInfo();
+}
+
+function getTsViewer(){
+  $.ajax({
+    url: "/script/php/get_ts_viewer.php",
+    success: function(response){
+      $('#ts-viewer').html(response);
+      $('#ts-viewer').slideDown(250);
+    }
+  })
+}
+
+function toggleTsViewer(){
+  var viewer = $('#ts-viewer');
+  if(viewer.is(":hidden")){
+    if(viewer.text().trim() == ""){
+      getTsViewer();
+    }
+    else {
+      viewer.slideDown(250);
+    }
+  }
+  else {
+    viewer.slideUp(250);
+  }
+}
+
+function joinChannel(obj){
+  console.log("click");
+  console.log($(obj).text().trim());
+  $.ajax({
+    url: "/script/php/get_channel_url_by_name.php",
+    type: "POST",
+    data: {"name": $(obj).text().trim()},
+    success: function(response){
+      response = $.parseJSON(response);
+      window.open(response.message);
+    }
+  })
 }

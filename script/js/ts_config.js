@@ -4,7 +4,6 @@ $('#ts-config-form').submit(function(event)
 }).validate({
 	rules: {
 			username: {required: true},
-			password: {required: true},
 			host: {required: true},
 			port: {required: true, number: true},
 			queryport: {required: true, number: true},
@@ -14,7 +13,6 @@ $('#ts-config-form').submit(function(event)
 	},
 	messages: {
 		username: "Please enter a valid username",
-		password: "Please enter a valid password",
 		host: "Please enter a valid hostaddress",
     port: "Please enter a valid port",
 		queryport: "Please enter a valid queryport",

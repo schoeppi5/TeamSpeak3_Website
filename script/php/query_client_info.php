@@ -8,7 +8,7 @@
     try
     {
 			$ts3_VirtualServer = new ts3Server();
-			if($ts3_VirtualServer){
+			if($ts3_VirtualServer->getServerConnection()){
 
 				(isset($_SESSION["uid"]) ? $client = user::fetchTsUserWithTsId($_SESSION["uid"]) : $client = user::fetchTsUserWithId($_COOKIE["uid"]));
 

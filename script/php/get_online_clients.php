@@ -5,7 +5,7 @@
   try
   {
 		$ts3_VirtualServer = new ts3Server();
-    if($ts3_VirtualServer->getServerConnection() != null){
+    if($ts3_VirtualServer->getServerConnection()){
 			$res = new response("200", "Queried clients successfully");
 
 			$clients = array();

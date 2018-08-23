@@ -67,6 +67,8 @@ function errorHandler(response)
 {
 	let time = 5000;
 
+	loaded();
+
 	switch(response.status)
 	{
 		case "502":

@@ -17,7 +17,7 @@
                                       :password)
                                   ");
         $statement->execute(array("username" => $_POST["common-username"],
-                                  "password" => $_POST["common-password"]);
+                                  "password" => password_hash($_POST["common-password"], PASSWORD_DEFAULT)));
         $res = new response("200", "Config saved");
       }
       catch(Exception $e){
