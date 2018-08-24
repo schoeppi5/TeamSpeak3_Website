@@ -1,8 +1,8 @@
 <?php
 include("./libs/ts3_server_connection_helper.php");
+include("./login_config.php");
 
-$server = new ts3Server();
+echo $pdo->query("SELECT username FROM admin")->fetch()["username"];
+
+
  ?>
-<pre>
-  <?php print_r($server->getChannelByName("Olymp")->cid); ?>
-</pre>

@@ -10,7 +10,7 @@
     $pdo->exec("DROP TABLE IF EXISTS admin;");
     $pdo->exec("DROP TABLE IF EXISTS users;");
     $pdo->exec("DROP TABLE IF EXISTS valid;");
-    $pdo->exec("DROP TABLE IF EXISTS tsConfig;");
+    $pdo->exec("DROP TABLE IF EXISTS tsconfig;");
 
     $pdo->exec("CREATE TABLE IF NOT EXISTS admin (
         username VARCHAR(20) PRIMARY KEY,
@@ -27,7 +27,7 @@
         code VARCHAR(10) NOT NULL
     );");
 
-    $pdo->exec("CREATE TABLE IF NOT EXISTS tsConfig (
+    $pdo->exec("CREATE TABLE IF NOT EXISTS tsconfig (
         username VARCHAR(50) NOT NULL,
         password VARCHAR(50) NOT NULL,
         host VARCHAR(100) PRIMARY KEY,
