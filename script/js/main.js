@@ -87,6 +87,18 @@ function errorHandler(response)
 	}
 }
 
+function configNeeded(){
+	$.ajax({
+		url: "/script/php/config_needed.php",
+		success: function(response){
+			response = $.parseJSON(response);
+			if(response.message !== "false"){
+				window.location.replace("/config");
+			}
+		}
+	});
+}
+
 $(document).ready(function()
 {
 	getNav();
