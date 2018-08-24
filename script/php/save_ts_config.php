@@ -6,14 +6,13 @@
     return isset($var) && !empty($var);
   }
 
-  if(isValid($_POST["ts-username"]) && isValid($_POST["ts-host"])
-    && isValid($_POST["ts-port"]) && isValid($_POST["ts-queryport"])
-    && isValid($_POST["ts-admingroup"]) && isValid($_POST["ts-moderatorgroup"])
-    && isValid($_POST["ts-membergroup"])){
-      if(isValid($_POST["ts-password"]) || $pdo->query("SELECT password FROM tsconfig")->fetch() !== false)
+  if(isValid($_POST["ts_username"]) && isValid($_POST["ts_host"])
+    && isValid($_POST["ts_port"]) && isValid($_POST["ts_queryport"])
+    && isValid($_POST["ts_admingroup"]) && isValid($_POST["ts_moderatorgroup"])
+    && isValid($_POST["ts_membergroup"])){
+      if(isValid($_POST["ts_password"]) || $pdo->query("SELECT password FROM tsconfig")->fetch() !== false)
       {
-        (isValid($_POST["ts-password"]) ? $password = $_POST["ts-password"] : $password = $pdo->query("SELECT password FROM tsconfig")->fetch()["password"]);
-        $password = base64_encode($password);
+        (isValid($_POST["ts_password"]) === true ? $password = base64_encode($_POST["ts_password"]) : $password = $pdo->query("SELECT password FROM tsconfig")->fetch()["password"]);
         try{
         $pdo->exec("DELETE FROM tsconfig");
         $statement = $pdo->prepare("INSERT INTO tsconfig (
@@ -35,14 +34,14 @@
                                       :moderatorgroup,
                                       :membergroup)
                                   ");
-        $statement->execute(array("username" => $_POST["ts-username"],
+        $statement->execute(array("username" => $_POST["ts_username"],
                                   "password" => $password,
-                                  "host" => $_POST["ts-host"],
-                                  "port" => $_POST["ts-port"],
-                                  "queryport" => $_POST["ts-queryport"],
-                                  "admingroup" => $_POST["ts-admingroup"],
-                                  "moderatorgroup" => $_POST["ts-moderatorgroup"],
-                                  "membergroup" => $_POST["ts-membergroup"]));
+                                  "host" => $_POST["ts_host"],
+                                  "port" => $_POST["ts_port"],
+                                  "queryport" => $_POST["ts_queryport"],
+                                  "admingroup" => $_POST["ts_admingroup"],
+                                  "moderatorgroup" => $_POST["ts_moderatorgroup"],
+                                  "membergroup" => $_POST["ts_membergroup"]));
         $res = new response("200", "Config saved");
         }
         catch(Exception $e){

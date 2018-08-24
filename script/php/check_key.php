@@ -1,18 +1,7 @@
 <?php
 	include("login_config.php");
 	include("./messageHandler.php");
-
-  function rndKey($length)
-	{
-		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		$charactersLength = strlen($characters);
-		$randomString = '';
-		for ($i = 0; $i < $length; $i++)
-		{
-			$randomString .= $characters[rand(0, $charactersLength - 1)];
-		}
-		return $randomString;
-	}
+	include("./libs/generate_key.php");
 
   if(!empty($_POST) && isset($_POST["code"]) && isset($_POST["remember"]))
 	{
@@ -23,7 +12,6 @@
     else {
       $remember = false;
     }
-
 
 		try
 		{
@@ -38,7 +26,7 @@
           $statement = $pdo->prepare("DELETE FROM users WHERE tsuid = :uid");
           $statement->execute(array("uid" => $resultset["tsuid"]));
           $statement = $pdo->prepare("INSERT INTO users (tsuid, uid) VALUES (:uid, :code)");
-          $code = rndKey(10);
+          $code = helper::getKey(10);
     			$statement->execute(array("uid" => $resultset["tsuid"], "code" => $code));
           setcookie('uid', $code, time() + (365 * 24 * 60 * 60), "/");
         }

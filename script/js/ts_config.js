@@ -3,22 +3,22 @@ $('#ts-config-form').submit(function(event)
 	event.preventDefault();
 }).validate({
 	rules: {
-			username: {required: true},
-			host: {required: true},
-			port: {required: true, number: true},
-			queryport: {required: true, number: true},
-			admingroup: {required: true, number: true},
-			moderatorgroup: {required: true, number: true},
-			membergroup: {required: true, number: true}
+			ts_username: {required: true},
+			ts_host: {required: true},
+			ts_port: {required: true, number: true},
+			ts_queryport: {required: true, number: true},
+			ts_admingroup: {required: true, number: true},
+			ts_moderatorgroup: {required: true, number: true},
+			ts_membergroup: {required: true, number: true}
 	},
 	messages: {
-		username: "Please enter a valid username",
-		host: "Please enter a valid hostaddress",
-    port: "Please enter a valid port",
-		queryport: "Please enter a valid queryport",
-		admingroup: "Please enter a valid admin group ID",
-		moderatorgroup: "Please enter a valid moderator group ID",
-		membergroup: "Please enter a valid member group ID"
+		ts_username: "Please enter a valid username",
+		ts_host: "Please enter a valid hostaddress",
+    ts_port: "Please enter a valid port",
+		ts_queryport: "Please enter a valid queryport",
+		ts_admingroup: "Please enter a valid admin group ID",
+		ts_moderatorgroup: "Please enter a valid moderator group ID",
+		ts_membergroup: "Please enter a valid member group ID"
 	},
 	errorPlacement: function(error, element) {
 		element.attr("placeholder", error.text());
@@ -51,7 +51,7 @@ function loadTsConfig(){
       response = $.parseJSON(response);
       if(response.status === "200")
       $.each(response.ts, function(key, value) {
-        $('#ts-' + key).val(value);
+        $('#ts_' + key).val(value);
       });
     }
   });

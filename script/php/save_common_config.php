@@ -6,7 +6,7 @@
     return isset($var) && !empty($var);
   }
 
-  if(isValid($_POST["common-username"]) && isValid($_POST["common-password"])){
+  if(isValid($_POST["common_username"]) && isValid($_POST["common_password"])){
       try{
         $pdo->exec("DELETE FROM admin");
         $statement = $pdo->prepare("INSERT INTO admin (
@@ -16,8 +16,8 @@
                                       :username,
                                       :password)
                                   ");
-        $statement->execute(array("username" => $_POST["common-username"],
-                                  "password" => password_hash($_POST["common-password"], PASSWORD_DEFAULT)));
+        $statement->execute(array("username" => $_POST["common_username"],
+                                  "password" => password_hash($_POST["common_password"], PASSWORD_DEFAULT)));
         $res = new response("200", "Config saved");
       }
       catch(Exception $e){

@@ -11,6 +11,7 @@
     $pdo->exec("DROP TABLE IF EXISTS users;");
     $pdo->exec("DROP TABLE IF EXISTS valid;");
     $pdo->exec("DROP TABLE IF EXISTS tsconfig;");
+    $pdo->exec("DROP TABLE IF EXISTS gameserverconfig;");
 
     $pdo->exec("CREATE TABLE IF NOT EXISTS admin (
         username VARCHAR(20) PRIMARY KEY,
@@ -30,12 +31,20 @@
     $pdo->exec("CREATE TABLE IF NOT EXISTS tsconfig (
         username VARCHAR(50) NOT NULL,
         password VARCHAR(50) NOT NULL,
-        host VARCHAR(100) PRIMARY KEY,
-        port INT(5) NOT NULL,
-        queryport INT(5) NOT NULL,
+        host VARCHAR(100) NOT NULL,
+        port INT(10) NOT NULL,
+        queryport INT(10) NOT NULL,
         admingroup INT(3) NOT NULL,
         moderatorgroup INT(3) NOT NULL,
         membergroup INT(3) NOT NULL
+    );");
+
+    $pdo->exec("CREATE TABLE IF NOT EXISTS gameserverconfig (
+        host VARCHAR(100) NOT NULL,
+        port INT(10) NOT NULL,
+        type INT(1) NOT NULL,
+        version INT(2),
+        uid VARCHAR(10) PRIMARY KEY
     );");
 
     $statement = $pdo->prepare("

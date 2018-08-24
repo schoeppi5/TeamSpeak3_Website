@@ -1,24 +1,16 @@
 <?php
   include("./libs/rcon/steam-condenser/steam-condenser.php");
+  include("./libs/game_server_helper.php");
 
   error_reporting(E_ERROR);
 
-  $server = new SourceServer("37.120.184.91", 27016);
-  $server->initialize();
+  
+  $server2 = new ServerHelper("37.120.184.91", 27016);
 ?>
 <pre>
-  <?php print_r($server->getServerInfo()); ?>
+  <?php if($server2->isConnected()){
+    print_r($server2->queryServerInfo());
+    echo "test";
+  }
+  echo "Test"; ?>
 </pre>
-<?php
-  try{
-    $server->rconAuth('elefanten1');
-    echo $server->rconExec("say hi");
-  }
-  catch(RCONNoAuthException $e) {
-    trigger_error('Could not authenticate with the game server.',
-    E_USER_ERROR);
-  }
-  catch(Exception $e){
-    echo "Test";
-  }
-?>

@@ -1,18 +1,7 @@
 <?php
 	include("./messageHandler.php");
 	include("./libs/ts3_server_connection_helper.php");
-
-	function rndKey($length)
-	{
-		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		$charactersLength = strlen($characters);
-		$randomString = '';
-		for ($i = 0; $i < $length; $i++)
-		{
-			$randomString .= $characters[rand(0, $charactersLength - 1)];
-		}
-		return $randomString;
-	}
+	include("./libs/generate_key.php");
 
 	if(!empty($_POST))
 	{
@@ -22,7 +11,7 @@
 			$ts3_VirtualServer = new ts3Server();
 			if($ts3_VirtualServer->getServerConnection()){
 
-				$key = rndKey(10);
+				$key = helper::getKey(10);
 
 				$ts3_VirtualServer->getServerConnection()->clientGetByUid($uid)->poke("Authentication key: ".$key);
 

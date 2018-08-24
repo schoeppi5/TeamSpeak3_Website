@@ -16,6 +16,8 @@ function loadInfo()
           $('#ts-ip').attr("href", "ts3server://" + response.server_ip + "?port=" + response.server_port);
           $('#ts-version').html(response.server_version);
 
+          $('title').html(response.server_name);
+
           loadClients();
         }
         else {

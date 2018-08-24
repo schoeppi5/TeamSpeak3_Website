@@ -3,12 +3,12 @@ $('#common-config-form').submit(function(event)
 	event.preventDefault();
 }).validate({
 	rules: {
-			username: {required: true},
-			password: {required: true}
+			common_username: {required: true},
+			common_password: {required: true}
 	},
 	messages: {
-		username: "Please enter a valid username",
-		password: "Please enter a valid password"
+		common_username: "Please enter a valid username",
+		common_password: "Please enter a valid password"
 	},
 	errorPlacement: function(error, element) {
 		element.attr("placeholder", error.text());

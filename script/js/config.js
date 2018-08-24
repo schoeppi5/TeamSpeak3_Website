@@ -43,6 +43,7 @@ function checkLogin(){
 						$('body').append(response);
 						$.getScript("/script/js/ts_config.js");
 						$.getScript("/script/js/common_config.js");
+						$.getScript("/script/js/gameserver_config.js");
 						$('#login-container').hide();
 					}
 				});
