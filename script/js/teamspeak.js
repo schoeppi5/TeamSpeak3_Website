@@ -76,6 +76,9 @@ function loadClients()
 
 function pokeClient(uid){
   var msg = prompt("Enter Message:", "");
+  if(msg === null){
+    return;
+  }
   $.ajax({
     type: 'POST',
     url: '/script/php/poke_client.php',
