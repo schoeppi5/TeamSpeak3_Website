@@ -97,11 +97,14 @@ function tsreload(){
 }
 
 function getTsViewer(){
+  caption = $('#ts-dashlet-bottom > button').html();
+  $('#ts-dashlet-bottom > button').html("<img src=\"/img/reload.svg\" style=\"width: 1rem; height: 1rem\"/>");
   $.ajax({
     url: "/script/php/get_ts_viewer.php",
     success: function(response){
       $('#ts-viewer').html(response);
       $('#ts-viewer').slideDown(250);
+      $('#ts-dashlet-bottom > button').html(caption);
     }
   })
 }
@@ -128,7 +131,7 @@ function joinChannel(obj){
     data: {"name": $(obj).text().trim()},
     success: function(response){
       response = $.parseJSON(response);
-      window.open(response.message);
+      window.location.href = response.message;
     }
   })
 }
