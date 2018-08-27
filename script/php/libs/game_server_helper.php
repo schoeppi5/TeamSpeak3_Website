@@ -15,6 +15,7 @@
 
   class ServerHelper {
 
+    private $host = null;
     private $server = null;
     private $type = null;
     private $version = null;
@@ -26,6 +27,7 @@
         try{
           $this->server = new SourceServer((string)$host, (int)$port);
           $this->server->initialize();
+          $this->host = $host;
         }
         catch(Exception $e){
           echo $e->getMessage();
@@ -35,6 +37,7 @@
         $this->version = $version;
         try{
           $this->server = new MinecraftPing($host, $port);
+          $this->host = $host;
         }
         catch(MinecraftPingException $e){
         }
@@ -45,6 +48,7 @@
       if($this->type == 1){
         try{
           $serverinfo = $this->server->getServerInfo();
+          $serverinfo = array_merge($serverinfo, array("host" => $this->host));
           $res = new response("200", "Server queried successfully");
           $res->mergeArray(array("serverinfo" => $serverinfo));
         }
@@ -57,6 +61,7 @@
         if($this->version == 16){
           try{
             $serverinfo = $this->server->QueryOldPre17();
+            $serverinfo = array_merge($serverinfo, array("host" => $this->host));
             $res = new response("200", "Server queried successfully");
             $res->mergeArray(array("serverinfo" => $serverinfo));
           }
@@ -68,6 +73,7 @@
         else {
           try{
             $serverinfo = $this->server->Query();
+            $serverinfo = array_merge($serverinfo, array("host" => $this->host));
             $res = new response("200", "Server queried successfully");
             $res->mergeArray(array("serverinfo" => $serverinfo));
           }

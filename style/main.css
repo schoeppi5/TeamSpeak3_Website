@@ -39,7 +39,7 @@ header {
 
 #msg-box {
 	width: 75vw;
-	position: absolute;
+	position: fixed;
 	top: 10vh;
 	left: calc(25vw / 2);
 	z-index: 10;
@@ -493,4 +493,43 @@ nav ul li .drop-container {
 	margin: 1rem;
 	padding: 1rem;
 	width: calc(100% - 2rem);
+}
+
+.server-server-dashlet {
+	margin: 1rem;
+	padding: .5rem;
+	border: 1px solid black;
+	float: left;
+	width: calc(100% - 2rem);
+	background-color: var(--accent-one);
+}
+
+.server-server-dashlet > span {
+	margin-bottom: .25rem;
+}
+
+.server-server-dashlet-caption {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.server-server-dashlet-caption > button {
+	color: var(--error-color);
+	font-size: .75rem;
+	background-color: inherit;
+	width: auto;
+	float: right;
+}
+
+.server-server-dashlet-caption > button:hover {
+	background-color: var(--menu-color);
+}
+
+.server-row {
+	float: left;
+	width: 100%;
+}
+
+.server-row:hover{
+	background-color: var(--menu-color);
 }

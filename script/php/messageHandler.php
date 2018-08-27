@@ -23,6 +23,10 @@
       $this->res = array_merge($this->res, $array);
     }
 
+    public function mergeSubArray($array, $key){
+      $this->res = array_merge($this->res, array($key => $array));
+    }
+
     public function getJSON(){
       return json_encode($this->res);
     }

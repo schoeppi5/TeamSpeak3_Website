@@ -29,8 +29,10 @@ function addServer(){
   var data = $('#server-config-form').serialize();
 
   data += "&server_config_type="
-  + ($('#server_config_type').value !== "Minecraft-Server" ? "2" : "1")
-  + "&server_version=" + ($('#server_config_type').value === "Minecraft-Server" ? $('#server_version').value : "");
+  + ($('#server_config_type').val() !== "Minecraft-Server" ? "1" : "2")
+  + "&server_version=" + ($('#server_config_type').val() === "Minecraft-Server" ? $('#server_version').val() : "");
+
+  console.log(data);
 
   $.ajax({
     type: "POST",
@@ -41,7 +43,49 @@ function addServer(){
       response = $.parseJSON(response);
       if(response.status === "200"){
         promptMessage("Configuration saved!", 0, 2500);
+        fetchGameServer();
       }
+    }
+  });
+}
+
+function fetchGameServer(){
+  $.ajax({
+    url: "/script/php/fetch_gameserver.php",
+    success: function(response){
+      response = $.parseJSON(response);
+      $('#server-servers-tab').html("");
+      $.each(response.servers, function(i, obj){
+        obj = $.parseJSON(obj);
+        console.log(obj);
+        $('#server-servers-tab').append(formatServer(obj.serverinfo.serverName, obj.serverinfo.host,
+                                                obj.serverinfo.serverPort, obj.serverinfo.numberOfPlayers,
+                                                obj.serverinfo.maxPlayers, obj.serverinfo.gameDesc, i));
+      });
+    }
+  });
+}
+
+function formatServer(name, host, port, player, maxplayer, gamedesc, uid){
+  var element;
+
+  element = "<div class=\"server-server-dashlet\" id=\"" + uid + "\">";
+  element += "<span class=\"server-server-dashlet-caption\">" + name + "<button onclick=\"deleteServer('" + uid + "')\">Delete</button></span>";
+  element += "<div class=\"server-row\"><span class=\"left\">Address:</span><span class=\"right\">" + host + ":" + port + "</span></div>";
+  element += "<div class=\"server-row\"><span class=\"left\">Players:</span><span class=\"right\">" + player + "/" + maxplayer + "</span></div>";
+  element += "<div class=\"server-row\"><span class=\"left\">Description:</span><span class=\"right\">" + gamedesc + "</span></div>";
+
+  return element;
+}
+
+function deleteServer(uid){
+  $.ajax({
+    url: "/script/php/delete_server.php",
+    type: "POST",
+    data: {"uid": uid},
+    success: function(response){
+      promptMessage("Server deleted!", 0, 2500);
+      fetchGameServer();
     }
   });
 }
@@ -58,4 +102,5 @@ $(document).ready(function(){
   $('#server_rcon').change(function(){
     $('#server_rcon_password').prop('disabled', function(i, v) { return !v; }).focus();
   });
+  fetchGameServer();
 });

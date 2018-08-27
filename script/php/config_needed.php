@@ -2,7 +2,7 @@
   include("./login_config.php");
   include("./messageHandler.php");
 
-  if($pdo->query("SELECT * FROM tsconfig")->fetch() !== null){
+  if($pdo->query("SELECT * FROM tsconfig")->fetch() !== false){
     $res = new response("200", "false");
   }
   else {
