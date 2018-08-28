@@ -1,5 +1,6 @@
 <?php
   include("login_config.php");
+  include("./messageHandler.php");
 
   try{
     $pdo->beginTransaction();
@@ -58,10 +59,13 @@
 
     $pdo->commit();
 
-    echo "Finished!";
+    $res = new response("200", "Database reset");
+    echo $res->getJSON();
   }
   catch(PDOException $e)
   {
-    echo $e->getMessage();
+    $res = new response("500", "Internal server error");
+    $res->addErrorMessage($e);
+    echo $res->getJSON();
   }
  ?>

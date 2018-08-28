@@ -1,46 +1,46 @@
-<div class="container" id="main">
-  <div class="dashlet config" id="ts-config">
-    <h2>TeamSpeak Configuration</h2>
-    <form method="post" id="ts-config-form" class="login-form">
-      <input type="text" name="ts_username" id="ts_username" placeholder="ServerQuery username" />
-      <input type="password" name="ts_password" id="ts_password" placeholder="ServerQuery password" />
-      <input type="text" name="ts_host" id="ts_host" placeholder="TeamSpeak3 hostaddress" />
-      <input type="number" name="ts_port" id="ts_port" min="1" placeholder="TeamSpeak3 port" />
-      <input type="number" name="ts_queryport" id="ts_queryport" min="1" placeholder="TeamSpeak3 queryport" />
-      <input type="number" name="ts_admingroup" id="ts_admingroup" min="1" placeholder="Admin group ID" />
-      <input type="number" name="ts_moderatorgroup" id="ts_moderatorgroup" min="1" placeholder="Moderator group ID" />
-      <input type="number" name="ts_membergroup" id="ts_membergroup" min="1" placeholder="Member group ID" />
-      <button type="submit">Save</button>
+<h1>Configuration</h1>
+<button onclick="resetDB()" id="resetDB">Reset database</button>
+<div class="dashlet config" id="ts-config">
+  <h2>TeamSpeak Configuration</h2>
+  <form method="post" id="ts-config-form" class="login-form">
+    <input type="text" name="ts_username" id="ts_username" placeholder="ServerQuery username" />
+    <input type="password" name="ts_password" id="ts_password" placeholder="ServerQuery password" />
+    <input type="text" name="ts_host" id="ts_host" placeholder="TeamSpeak3 hostaddress" />
+    <input type="number" name="ts_port" id="ts_port" min="1" placeholder="TeamSpeak3 port" />
+    <input type="number" name="ts_queryport" id="ts_queryport" min="1" placeholder="TeamSpeak3 queryport" />
+    <input type="number" name="ts_admingroup" id="ts_admingroup" min="1" placeholder="Admin group ID" />
+    <input type="number" name="ts_moderatorgroup" id="ts_moderatorgroup" min="1" placeholder="Moderator group ID" />
+    <input type="number" name="ts_membergroup" id="ts_membergroup" min="1" placeholder="Member group ID" />
+    <button type="submit">Save</button>
+  </form>
+</div>
+<div class="dashlet config" id="common-config">
+  <h2>Common Configuration</h2>
+  <form method="post" id="common-config-form" class="login-form">
+    <input type="text" name="common_username" id="common_username" placeholder="Username for admin login" />
+    <input type="password" name="common_password" id="common_password" placeholder="Password for admin login" />
+    <button type="submit">Save</button>
+  </form>
+</div>
+<div class="dashlet config" id="server-config">
+  <h2>Gameserver Configuration</h2>
+  <div class="server-config-tab">
+    <form method="post" id="server-config-form" class="login-form">
+      <input type="text" name="server_host" id="server_host" placeholder="Server hostaddress" />
+      <input type="number" name="server_port" id="server_port" placeholder="Server port" min="1" />
+      <select form="server-config-form" id="server_config_type">
+        <option value="Source-Engine-Server" selected>Source-Engine-Server</option>
+        <option value="Minecraft-Server">Minecraft-Server</option>
+      </select>
+      <select form="server-config-form" id="server_version" style="display: none">
+        <option value="" disabled selected hidden>Select Version</option>
+        <option value="16">>1.7</option>
+        <option value="17">1.7<</option>
+      </select>
+      <span style="float: left;"><input type="checkbox" name="server_rcon" id="server_rcon" />Enable RCON</span>
+      <input type="password" name="server_rcon_password" id="server_rcon_password" placeholder="RCON password" disabled/>
+      <button type="submit">Add</button>
     </form>
   </div>
-  <div class="dashlet config" id="common-config">
-    <h2>Common Configuration</h2>
-    <form method="post" id="common-config-form" class="login-form">
-      <input type="text" name="common_username" id="common_username" placeholder="Username for admin login" />
-      <input type="password" name="common_password" id="common_password" placeholder="Password for admin login" />
-      <button type="submit">Save</button>
-    </form>
-  </div>
-  <div class="dashlet config" id="server-config">
-    <h2>Gameserver Configuration</h2>
-    <div class="server-config-tab">
-      <form method="post" id="server-config-form" class="login-form">
-        <input type="text" name="server_host" id="server_host" placeholder="Server hostaddress" />
-        <input type="number" name="server_port" id="server_port" placeholder="Server port" min="1" />
-        <select form="server-config-form" id="server_config_type">
-          <option value="Source-Engine-Server" selected>Source-Engine-Server</option>
-          <option value="Minecraft-Server">Minecraft-Server</option>
-        </select>
-        <select form="server-config-form" id="server_version" style="display: none">
-          <option value="" disabled selected hidden>Select Version</option>
-          <option value="16">>1.7</option>
-          <option value="17">1.7<</option>
-        </select>
-        <span style="float: left;"><input type="checkbox" name="server_rcon" id="server_rcon" />Enable RCON</span>
-        <input type="password" name="server_rcon_password" id="server_rcon_password" placeholder="RCON password" disabled/>
-        <button type="submit">Add</button>
-      </form>
-    </div>
-    <div id="server-servers-tab"></div>
-  </div>
+  <div id="server-servers-tab"></div>
 </div>

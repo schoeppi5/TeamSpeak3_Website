@@ -1,6 +1,8 @@
 <?php
   include("./login_config.php");
 
+  //password needs to be Base64 encoded
+
   $pdo->exec("INSERT INTO tsconfig (
                                       username,
                                       password,
@@ -12,7 +14,7 @@
                                       membergroup)
                                     VALUES (
                                       'ServerQuery',
-                                      'QVRKU0grZkU=',
+                                      '',
                                       '37.120.184.91',
                                       9987,
                                       10011,

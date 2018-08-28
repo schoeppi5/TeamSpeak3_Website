@@ -37,16 +37,7 @@ function checkLogin(){
 		success: function(response){
 			response = $.parseJSON(response);
 			if(response.status == "200"){
-				$.ajax({
-					url: "/include/config.html",
-					success: function(response){
-						$('body').append(response);
-						$.getScript("/script/js/ts_config.js");
-						$.getScript("/script/js/common_config.js");
-						$.getScript("/script/js/gameserver_config.js");
-						$('#login-container').hide();
-					}
-				});
+				loadConfigMain();
 			}
 			else {
 				errorHandler(response);
@@ -54,6 +45,40 @@ function checkLogin(){
 			}
 		}
 	});
+}
+
+function loadConfigMain(){
+	$.ajax({
+		url: "/include/config.html",
+		success: function(response){
+			$('#main').html(response);
+			$.getScript("/script/js/ts_config.js");
+			$.getScript("/script/js/common_config.js");
+			$.getScript("/script/js/gameserver_config.js");
+			$('#login-container').hide();
+		}
+	});
+}
+
+function resetDB(){
+	$.ajax({
+		url: "/script/php/database_preparation.php",
+		success: function(response){
+			try{
+				response = $.parseJSON(response);
+				if(response.status == 200){
+	        promptMessage("Database reset!", 0, 2500);
+					loadConfigMain();
+				}
+				else {
+					errorHandler(response);
+				}
+			}
+			catch(e){
+				console.log(e.message);
+			}
+		}
+	})
 }
 
 $(document).ready(function(){
