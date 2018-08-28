@@ -56,22 +56,23 @@ function fetchGameServer(){
       response = $.parseJSON(response);
       $('#server-servers-tab').html("");
       $.each(response.servers, function(i, obj){
-        obj = $.parseJSON(obj);
         console.log(obj);
-        $('#server-servers-tab').append(formatServer(obj.serverinfo.serverName, obj.serverinfo.host,
-                                                obj.serverinfo.serverPort, obj.serverinfo.numberOfPlayers,
-                                                obj.serverinfo.maxPlayers, obj.serverinfo.gameDesc, i));
+        obj = $.parseJSON(obj);
+        $('#server-servers-tab').append(formatServer(obj.serverinfo.name, obj.serverinfo.host,
+                                                      obj.serverinfo.port, obj.serverinfo.player,
+                                                      obj.serverinfo.maxplayer, obj.serverinfo.gamedesc, i,
+                                                      (obj.serverinfo.connectlink !== null ? obj.serverinfo.connectlink : null)));
       });
     }
   });
 }
 
-function formatServer(name, host, port, player, maxplayer, gamedesc, uid){
+function formatServer(name, host, port, player, maxplayer, gamedesc, uid, link = null){
   var element;
 
   element = "<div class=\"server-server-dashlet\" id=\"" + uid + "\">";
   element += "<span class=\"server-server-dashlet-caption\">" + name + "<button onclick=\"deleteServer('" + uid + "')\">Delete</button></span>";
-  element += "<div class=\"server-row\"><span class=\"left\">Address:</span><span class=\"right\">" + host + ":" + port + "</span></div>";
+  element += "<div class=\"server-row\"><span class=\"left\">Address:</span><span class=\"right\">" + (link !== null ? "<a href=\"" + link + "\">" + host + ":" + port + "</a>" : host + ":" + port) + "</span></div>";
   element += "<div class=\"server-row\"><span class=\"left\">Players:</span><span class=\"right\">" + player + "/" + maxplayer + "</span></div>";
   element += "<div class=\"server-row\"><span class=\"left\">Description:</span><span class=\"right\">" + gamedesc + "</span></div>";
 

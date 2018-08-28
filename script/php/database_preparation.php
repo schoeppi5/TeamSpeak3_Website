@@ -42,6 +42,7 @@
     $pdo->exec("CREATE TABLE IF NOT EXISTS gameserverconfig (
         host VARCHAR(100) NOT NULL,
         port INT(10) NOT NULL,
+        name VARCHAR(100) NOT NULL,
         type INT(1) NOT NULL,
         version INT(2),
         uid VARCHAR(10) PRIMARY KEY

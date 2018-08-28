@@ -12,8 +12,7 @@
   while($array = $statement->fetch(PDO::FETCH_ASSOC)){
     $server = new ServerHelper($array["host"], $array["port"], $array["type"], $array["version"]);
     $serverinfo = $server->queryServerInfo();
-    $serverinfo->add("host", $array["host"]);
-    $servers = array_merge($servers, array($array["uid"] => $serverinfo->getJSON()));
+    $servers = array_merge($servers, array($array["uid"] => json_encode($serverinfo)));
   }
 
   $res->mergeSubArray($servers, "servers");

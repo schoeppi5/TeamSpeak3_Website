@@ -343,6 +343,47 @@ nav ul li .drop-container {
 	padding: .25rem;
 }
 
+.dashlet:not(#profile-dashlet):not(#ts-dashlet){
+	margin-top: 4rem;
+}
+
+.dashlet-tab-control {
+	float: left;
+	background-color: var(--accent-one);
+	width: calc(100% + .5rem);
+	margin-left: -.25rem;
+	margin-top: -.25rem;
+	border-bottom: 1px solid var(--txt-color);
+	padding-top: .25rem;
+}
+
+.dashlet-tab-control > button {
+	color: var(--txt-color);
+	background-color: var(--menu-color);
+	width: auto;
+	font-size: 1rem;
+	height: auto;
+	float: left;
+	margin: 0;
+	border-right: 1px solid var(--txt-color);
+}
+
+.dashlet-tab-control > .activeTab {
+	background-color: var(--dashlet-color);
+}
+
+.dashlet-tab-control > button:hover{
+	background-color: var(--dashlet-color);
+}
+
+.dashlet-tab-control > button:last-child {
+	border: none;
+}
+
+.dashlet-tab-control > button:focus {
+	outline: 0;
+}
+
 .dashlet-head {
 	float: left;
 	width: 100%;
@@ -364,26 +405,26 @@ nav ul li .drop-container {
 		padding: 2rem;
 	}
 
-	#ts-dashlet-left {
+	.dashlet-left {
 		border-right: none !IMPORTANT;
 		width: 100%;
 	}
 
-	#ts-dashlet-left > * {
+	.dashlet-left > * {
 		font-size: 1.25rem;
 	}
 
-	#ts-dashlet-left > * > *{
+	.dashlet-left > * > *{
 		font-size: 1.25rem;
 	}
 
-	#ts-dashlet-right {
+	.dashlet-right {
 		border-left: none !IMPORTANT;
 		width: 100%;
 		font-size: 1.5rem;
 	}
 
-	#ts-dashlet-right > * > *{
+	.dashlet-right > * > *{
 		font-size: 1.5rem;
 	}
 }
@@ -405,16 +446,21 @@ nav ul li .drop-container {
 	width: 70%;
 }
 
-#ts-dashlet-left {
+/***servers-dashlet***/
+#servers-dashlet {
+	width: 100%;
+}
+
+.dashlet-left {
 	border-right: 1px solid var(--accent-one);
 	padding: .5rem;
 }
 
-#ts-dashlet-left > * {
+.dashlet-left > * {
 	padding: .25rem;
 }
 
-#ts-dashlet-right {
+.dashlet-right {
 	padding: .5rem;
 }
 
@@ -481,8 +527,15 @@ nav ul li .drop-container {
 	background-color: var(--menu-color);
 }
 
+#ts-viewer {
+	float: left;
+	max-height: 20vh;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
 .config {
-	margin: 2rem;
+	margin-bottom: 2rem;
 	width: 100%;
 }
 
@@ -498,7 +551,7 @@ nav ul li .drop-container {
 .server-server-dashlet {
 	margin: 1rem;
 	padding: .5rem;
-	border: 1px solid black;
+	border: 1px solid var(--txt-color);
 	float: left;
 	width: calc(100% - 2rem);
 	background-color: var(--accent-one);
@@ -532,4 +585,17 @@ nav ul li .drop-container {
 
 .server-row:hover{
 	background-color: var(--menu-color);
+}
+
+#servers-reload > button {
+	width: 20%;
+	float: right;
+}
+
+#rules-container {
+	padding: 1rem;
+}
+
+#rules-container > ol {
+	padding-left: 2rem;
 }

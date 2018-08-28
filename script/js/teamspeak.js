@@ -110,6 +110,9 @@ function getTsViewer(){
       $('#ts-viewer').html(response);
       $('#ts-viewer').slideDown(250);
       $('#ts-dashlet-bottom > button').html(caption);
+      setTimeout(function(){
+        resizeAll();
+      }, 260);
     }
   })
 }
@@ -119,13 +122,20 @@ function toggleTsViewer(){
   if(viewer.is(":hidden")){
     if(viewer.text().trim() == ""){
       getTsViewer();
+      resizeAll();
     }
     else {
       viewer.slideDown(250);
+      setTimeout(function(){
+        resizeAll();
+      }, 260);
     }
   }
   else {
     viewer.slideUp(250);
+    setTimeout(function(){
+      resizeAll();
+    }, 260);
   }
 }
 

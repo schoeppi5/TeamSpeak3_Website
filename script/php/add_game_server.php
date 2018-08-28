@@ -11,8 +11,8 @@
 
       if($server->isConnected()){
         $key = helper::getKey(10);
-        $statement = $pdo->prepare("INSERT INTO gameserverconfig (host, port, type, version, uid) VALUES (:host, :port, :type, :version, :key)");
-        $statement->execute(array("host" => $_POST["server_host"], "port" => $_POST["server_port"], "type" => $_POST["server_config_type"], "version" => $version, "key" => $key));
+        $statement = $pdo->prepare("INSERT INTO gameserverconfig (host, port, name, type, version, uid) VALUES (:host, :port, :name, :type, :version, :key)");
+        $statement->execute(array("host" => $_POST["server_host"], "port" => $_POST["server_port"], "name" => $server->queryServerInfo()["serverinfo"]["name"], "type" => $_POST["server_config_type"], "version" => $version, "key" => $key));
         $res = new response("200", "Server added");
       }
       else {

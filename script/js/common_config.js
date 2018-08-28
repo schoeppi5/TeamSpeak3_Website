@@ -41,7 +41,7 @@ function loadCommonConfig(){
       response = $.parseJSON(response);
       if(response.status === "200")
       $.each(response.common, function(key, value) {
-        $('#common-' + key).val(value);
+        $('#common_' + key).val(value);
       });
     }
   });

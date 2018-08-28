@@ -2,15 +2,20 @@ function getNav()
 {
 	$('header').load("/include/nav.html", function()
 	{
-		resize();
+		resizeAll();
 	});
 }
 
-function resize(){
+function resizeAll(){
 	$.getScript("/script/js/nav.js").done(function()
 	{
 		resize();
 	});
+	serverTabControlResize();
+}
+
+function serverTabControlResize(){
+	$('#servers-tab-control > button').innerWidth(($('#servers-tab-control').innerWidth() - $('#servers-tab-control > button').length + 1) / $('#servers-tab-control > button').length);
 }
 
 function loaded()
@@ -102,9 +107,9 @@ function configNeeded(){
 $(document).ready(function()
 {
 	getNav();
-	resize();
+	resizeAll();
 	$(window).resize(function()
 	{
-		resize();
+		resizeAll();
 	});
 });

@@ -36,3 +36,15 @@ function getTeamSpeak()
     loadInfo();
   });
 }
+
+function getServers()
+{
+  $.ajax({
+    type: "GET",
+    url: "/include/servers.html",
+    success: function(response){
+      $('#servers-dashlet').append(response);
+      $.getScript("/script/js/servers.js");
+    }
+  });
+}

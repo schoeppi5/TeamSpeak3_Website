@@ -7,6 +7,7 @@ $(document).ready(function(){
 		{
 			getLogin();
 			getTeamSpeak();
+			getServers();
 			resize();
 		});
 	});
