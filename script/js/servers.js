@@ -11,6 +11,9 @@ function loadTabControl(uid = null){
           $('#servers-tab-control').append("<button onclick=\"loadServersInfo('" + key + "')\" id=\"" + key + "\">" + value + "</button>");
         });
         serverTabControlResize();
+        if($('#servers-tab-control > button').length == 0){
+          $('#servers-dashlet').hide();
+        }
         if(uid == null){
           loadServersInfo($('#servers-tab-control > button:first').attr('id'));
         }else {
