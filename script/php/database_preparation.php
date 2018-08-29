@@ -64,7 +64,7 @@
       version
     ) VALUES (
       'TeamSpeak Website',
-      'schoeppi5 (<a href="https://github.com/schoeppi5">GitHub</a>)',
+      'schoeppi5 (<a href=\"https://github.com/schoeppi5\">GitHub</a>)',
       '1.0'
     )");
 

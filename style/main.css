@@ -1,7 +1,7 @@
 /*Common*/
 :root {
-	--bg-color: #ededed;
-	--menu-color: #c4c4c4;
+	--bg-color: #ad2828;
+	--menu-color: #333333;
 	--txt-color: #3b71c6;
 	--accent-one: #aeaeaf;
 	--accent-two: #8e8e8e;
@@ -196,7 +196,7 @@ nav ul li .drop-container {
 	cursor: pointer;
 	border: none;
 	background-color: var(--txt-color);
-	color: var(--bg-color);
+	color: var(--dashlet-color);
 	padding: .3rem;
 	margin-bottom: .5rem;
 }
@@ -626,7 +626,7 @@ nav ul li .drop-container {
 footer {
 	float: left;
 	background-color: var(--menu-color);
-	width: 100vw;
+	width: 100%;
 }
 
 footer > div {
