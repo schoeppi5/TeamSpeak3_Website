@@ -310,6 +310,18 @@ nav ul li .drop-container {
 	background-color: var(--dashlet-color);
 }
 
+#login-mask a {
+	display: block;
+	width: 100%;
+	background-color: var(--txt-color);
+	color: var(--bg-color);
+	float: left;
+	padding: .3rem;
+	margin-bottom: .5rem;
+	text-align: center;
+	text-decoration: none;
+}
+
 .container {
 	width: 100%;
 	float: left;
@@ -609,4 +621,41 @@ nav ul li .drop-container {
 	margin-top: 1rem;
 	padding: .5rem;
 	border-radius: 5px;
+}
+
+footer {
+	float: left;
+	background-color: var(--menu-color);
+	width: 100vw;
+}
+
+footer > div {
+	width: calc(100% / 3);
+	float: left;
+	margin: 0;
+	padding: .5rem;
+}
+
+footer > div > * {
+	width: 100%;
+	float: left;
+}
+
+footer a {
+	text-decoration: none;
+	color: var(--txt-color);
+	display: block;
+	margin: .25rem;
+}
+
+.footer-left {
+	padding-left: 1rem;
+}
+.footer-middle {
+	text-align: center;
+}
+
+.footer-right {
+	text-align: right;
+	padding-right: 1rem;
 }

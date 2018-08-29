@@ -104,9 +104,20 @@ function configNeeded(){
 	});
 }
 
+function getFooter(){
+	$('footer').load("/include/footer.html", function(){
+		resizeAll();
+		$.getScript("/script/js/footer.js").done(function()
+		{
+			queryFooter();
+		});
+	});
+}
+
 $(document).ready(function()
 {
 	getNav();
+	getFooter();
 	resizeAll();
 	$(window).resize(function()
 	{

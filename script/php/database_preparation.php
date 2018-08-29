@@ -13,6 +13,7 @@
     $pdo->exec("DROP TABLE IF EXISTS valid;");
     $pdo->exec("DROP TABLE IF EXISTS tsconfig;");
     $pdo->exec("DROP TABLE IF EXISTS gameserverconfig;");
+    $pdo->exec("DROP TABLE IF EXISTS config;");
 
     $pdo->exec("CREATE TABLE IF NOT EXISTS admin (
         username VARCHAR(20) PRIMARY KEY,
@@ -48,6 +49,24 @@
         version INT(2),
         uid VARCHAR(10) PRIMARY KEY
     );");
+
+    $pdo->exec("CREATE TABLE IF NOT EXISTS config (
+        name VARCHAR(100) NOT NULL,
+        author VARCHAR(100) NOT NULL,
+        editor VARCHAR(100),
+        icon LONGBLOB,
+        version VARCHAR(10) NOT NULL
+    );");
+
+    $pdo->exec("INSERT INTO config (
+      name,
+      author,
+      version
+    ) VALUES (
+      'TeamSpeak Website',
+      'schoeppi5 (<a href="https://github.com/schoeppi5">GitHub</a>)',
+      '1.0'
+    )");
 
     $statement = $pdo->prepare("
       INSERT INTO admin (username, password)

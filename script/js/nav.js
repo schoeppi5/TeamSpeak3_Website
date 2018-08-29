@@ -3,7 +3,7 @@ var slideSpeed = 150;
 function resize()
 {
 	$('#nav-placeholder').css("height", $('nav').height());
-	$('#main').css("min-height", $('body').height() - $('header').height());
+	$('#main').css("min-height", $('body').height() - $('header').height() - $('footer').height());
 	if($('.drop-btn').css('display') == "none")
 	{
 		$('.drop').show();
